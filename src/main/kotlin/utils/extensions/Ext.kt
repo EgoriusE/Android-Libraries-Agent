@@ -35,7 +35,3 @@ fun Any.logDebug(e: Exception? = null, lazyMessage: () -> String) {
     val logger = Logger.getInstance(this::class.java)
     logger.debug(e) { lazyMessage() }
 }
-
-fun String.replaceLineBreaks(): String {
-    return this.replace("\n", "\n<br />", true)
-}

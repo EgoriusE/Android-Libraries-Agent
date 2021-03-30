@@ -21,3 +21,7 @@ fun String.snakeToLowerCamelCase(): String {
 fun String.snakeToUpperCamelCase(): String {
     return this.snakeToLowerCamelCase().capitalize()
 }
+
+fun String.replaceLineBreaks(): String {
+    return this.replace("\n", "\n<br />", true)
+}

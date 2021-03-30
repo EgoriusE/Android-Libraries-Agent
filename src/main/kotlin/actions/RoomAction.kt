@@ -8,7 +8,6 @@ import utils.extensions.getPackageName
 import model.ModificationModel
 import model.ModificationStep
 
-
 class RoomAction : BaseAction() {
 
     override fun actionPerformed(e: AnActionEvent) {

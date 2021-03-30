@@ -11,7 +11,9 @@ import freemarker.template.TemplateExceptionHandler
 import org.jetbrains.kotlin.idea.KotlinFileType
 import java.io.StringWriter
 
-class TemplateGenerator(private val project: Project) {
+class TemplateGenerator(
+    private val project: Project
+) {
 
     private val psiFileFactory by lazy {
         PsiFileFactory.getInstance(project)

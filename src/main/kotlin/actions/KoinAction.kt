@@ -10,7 +10,6 @@ import model.ModificationStep
 
 class KoinAction : BaseAction() {
 
-
     override fun actionPerformed(e: AnActionEvent) {
         super.actionPerformed(e)
 
