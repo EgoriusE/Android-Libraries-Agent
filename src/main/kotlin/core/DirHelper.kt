@@ -42,7 +42,6 @@ class DirHelper(private val module: Module) {
         var dir: PsiDirectory? = null
         execRunWriteAction {
             dir = getPackageDir()?.createSubdirectory(dirName)
-
         }
         return dir
     }

@@ -7,7 +7,7 @@ import com.intellij.notification.NotificationType
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
-import replaceLineBreaks
+import utils.extensions.replaceLineBreaks
 import javax.swing.event.HyperlinkEvent
 
 

@@ -5,23 +5,24 @@ import com.android.tools.idea.gradle.dsl.api.GradleModelProvider
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
+import execRunWriteAction
 import model.ModificationModel
 import model.ModificationStep
+import openInEditor
 import services.NotificationsFactory
 
 @Service
-class ActionHandlerService(
+class ActionHandler(
     private val project: Project
 ) {
 
-    private val fileAdder = FileAdder(project)
     private val gradleDependenciesManager = GradleDependenciesManager()
     private val notificationFactory by lazy {
         NotificationsFactory.getInstance(project)
     }
 
     companion object {
-        fun getInstance(project: Project): ActionHandlerService = project.service()
+        fun getInstance(project: Project): ActionHandler = project.service()
     }
 
     fun handle(model: ModificationModel) {
@@ -45,8 +46,16 @@ class ActionHandlerService(
                         }
 
                     val templateGenerator = TemplateGenerator(project)
-                    val generatedFiles = templateGenerator.generateFiles(step.filesNames, step.model)
-                    fileAdder.addFiles(generatedFiles, boilerPlateDir)
+                    val generatedFiles = templateGenerator.generateFiles(step.files)
+
+                    execRunWriteAction {
+                        generatedFiles.forEach { fileModel ->
+                            val addedPsiElement = boilerPlateDir?.add(fileModel.psiFile)
+                            if(fileModel.isOpenInEditor) {
+                                addedPsiElement?.openInEditor()
+                            }
+                        }
+                    }
                 }
 
                 is ModificationStep.ExistingFiles -> {

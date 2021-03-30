@@ -2,7 +2,8 @@ package actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
 import constants.*
-import core.ActionHandlerService
+import core.ActionHandler
+import model.FileModel
 import utils.extensions.DOT
 import utils.extensions.getPackageName
 import model.ModificationModel
@@ -14,6 +15,7 @@ class RoomAction : BaseAction() {
         super.actionPerformed(e)
 
         if (project != null && module != null) {
+            val templateModel = mapOf(ROOM_PACKAGE_NAME to module!!.getPackageName() + Char.DOT + ROOM_FOLDER_NAME)
             val dataModel = ModificationModel(
                 steps = listOf(
                     ModificationStep.DependenciesStep(
@@ -23,12 +25,11 @@ class RoomAction : BaseAction() {
                         )
                     ),
                     ModificationStep.GenerateCodeStep(
-                        filesNames = listOf(
-                            ROOM_TEMPLATE_DAO,
-                            ROOM_TEMPLATE_DATABASE,
-                            ROOM_TEMPLATE_ENTITY,
+                        files = listOf(
+                            FileModel(ROOM_TEMPLATE_DAO, templateModel),
+                            FileModel(ROOM_TEMPLATE_DATABASE, templateModel, true),
+                            FileModel(ROOM_TEMPLATE_ENTITY, templateModel)
                         ),
-                        model = mapOf(ROOM_PACKAGE_NAME to module!!.getPackageName() + Char.DOT + ROOM_FOLDER_NAME),
                         dirName = ROOM_FOLDER_NAME
                     ),
                     ModificationStep.NotificationStep(
@@ -37,7 +38,7 @@ class RoomAction : BaseAction() {
                 ),
                 module = module!!
             )
-            ActionHandlerService.getInstance(project!!).handle(dataModel)
+            ActionHandler.getInstance(project!!).handle(dataModel)
         }
     }
 }

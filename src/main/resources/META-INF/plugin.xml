@@ -36,6 +36,6 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <projectService serviceImplementation="services.NotificationsFactory"/>
-        <projectService serviceImplementation="core.ActionHandlerService"/>
+        <projectService serviceImplementation="core.ActionHandler"/>
     </extensions>
 </idea-plugin>
