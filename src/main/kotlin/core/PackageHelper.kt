@@ -14,7 +14,7 @@ import utils.extensions.getPackageName
 import org.jetbrains.kotlin.idea.core.util.toPsiDirectory
 import org.jetbrains.kotlin.idea.util.application.runWriteAction
 
-class DirHelper(private val module: Module) {
+class PackageHelper(private val module: Module) {
 
     private val project = module.project
     private val rootDir = project.guessProjectDir()?.toPsiDirectory(project)
@@ -40,9 +40,7 @@ class DirHelper(private val module: Module) {
 
     fun generateDir(dirName: String): PsiDirectory? {
         var dir: PsiDirectory? = null
-        execRunWriteAction {
-            dir = getPackageDir()?.createSubdirectory(dirName)
-        }
+        execRunWriteAction { dir = getPackageDir()?.createSubdirectory(dirName) }
         return dir
     }
 }

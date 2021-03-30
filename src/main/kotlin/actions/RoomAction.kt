@@ -8,6 +8,7 @@ import utils.extensions.DOT
 import utils.extensions.getPackageName
 import model.ModificationModel
 import model.ModificationStep
+import model.OpenInEditorFileType
 
 class RoomAction : BaseAction() {
 
@@ -18,23 +19,24 @@ class RoomAction : BaseAction() {
             val templateModel = mapOf(ROOM_PACKAGE_NAME to module!!.getPackageName() + Char.DOT + ROOM_FOLDER_NAME)
             val dataModel = ModificationModel(
                 steps = listOf(
-                    ModificationStep.DependenciesStep(
-                        dependencies = listOf(
-                            ROOM_D_KTX,
-                            ROOM_D_RUNTIME
-                        )
-                    ),
-                    ModificationStep.GenerateCodeStep(
-                        files = listOf(
-                            FileModel(ROOM_TEMPLATE_DAO, templateModel),
-                            FileModel(ROOM_TEMPLATE_DATABASE, templateModel, true),
-                            FileModel(ROOM_TEMPLATE_ENTITY, templateModel)
-                        ),
-                        dirName = ROOM_FOLDER_NAME
-                    ),
-                    ModificationStep.NotificationStep(
-                        message = "Surprise! Room lib added!"
-                    )
+//                    ModificationStep.DependenciesStep(
+//                        dependencies = listOf(
+//                            ROOM_D_KTX,
+//                            ROOM_D_RUNTIME
+//                        )
+//                    ),
+//                    ModificationStep.GenerateCodeStep(
+//                        files = listOf(
+//                            FileModel(ROOM_TEMPLATE_DAO, templateModel),
+//                            FileModel(ROOM_TEMPLATE_DATABASE, templateModel, true),
+//                            FileModel(ROOM_TEMPLATE_ENTITY, templateModel)
+//                        ),
+//                        dirName = ROOM_FOLDER_NAME
+//                    ),
+//                    ModificationStep.NotificationStep(
+//                        message = "Surprise! Room lib added!"
+//                    )
+                ModificationStep.OpenInEditorFiles()
                 ),
                 module = module!!
             )

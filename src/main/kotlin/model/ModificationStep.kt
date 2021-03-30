@@ -15,6 +15,13 @@ sealed class ModificationStep {
 
     class NotificationStep(val message: String) : ModificationStep()
 
+    class OpenInEditorFiles(
+        val fileTypes: List<OpenInEditorFileType> = listOf(OpenInEditorFileType.BUILD_GRADLE_APP)
+    ) : ModificationStep()
+}
+
+enum class OpenInEditorFileType {
+    BUILD_GRADLE_APP, BUILD_GRADLE_PROJECT, MANIFEST,
 }
 
 enum class TypeClassToModification {

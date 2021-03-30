@@ -30,7 +30,7 @@ class SrcModifier(private val project: Project) {
 
     fun modify(model: ModificationModel) {
         this.model = model
-        val dirHelper = DirHelper(model.module)
+        val dirHelper = PackageHelper(model.module)
         val packageDir = dirHelper.getPackageDir()
         val files: Array<PsiFile>? = packageDir?.files
         files?.forEach {

@@ -5,9 +5,11 @@ import com.android.tools.idea.gradle.dsl.api.GradleModelProvider
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
+import constants.CodeGeneratorConstants.BUILD_GRADLE_FILE_NAME
 import execRunWriteAction
 import model.ModificationModel
 import model.ModificationStep
+import model.OpenInEditorFileType
 import openInEditor
 import services.NotificationsFactory
 
@@ -26,6 +28,8 @@ class ActionHandler(
     }
 
     fun handle(model: ModificationModel) {
+        val dirHelper = PackageHelper(model.module)
+
         model.steps.forEach { step ->
             when (step) {
 
@@ -37,7 +41,6 @@ class ActionHandler(
                 }
 
                 is ModificationStep.GenerateCodeStep -> {
-                    val dirHelper = DirHelper(model.module)
                     val boilerPlateDir =
                         if (step.dirName != null) {
                             dirHelper.generateDir(step.dirName)
@@ -51,7 +54,7 @@ class ActionHandler(
                     execRunWriteAction {
                         generatedFiles.forEach { fileModel ->
                             val addedPsiElement = boilerPlateDir?.add(fileModel.psiFile)
-                            if(fileModel.isOpenInEditor) {
+                            if (fileModel.isOpenInEditor) {
                                 addedPsiElement?.openInEditor()
                             }
                         }
@@ -65,6 +68,21 @@ class ActionHandler(
                 is ModificationStep.NotificationStep -> {
                     notificationFactory.info(step.message)
                 }
+
+                is ModificationStep.OpenInEditorFiles -> {
+                    step.fileTypes.forEach { type ->
+                        when (type) {
+                            OpenInEditorFileType.BUILD_GRADLE_APP -> {
+                                val moduleDir = dirHelper.getModuleDir()
+                                val buildFile = moduleDir?.findFile(BUILD_GRADLE_FILE_NAME)
+                                buildFile?.openInEditor()
+                            }
+                            else -> {
+                            } // TODO (not implemented yet)
+                        }
+                    }
+                }
+
             }
         }
     }
