@@ -1,14 +1,13 @@
 package actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
-import constants.*
+import constants.ROOM_FOLDER_NAME
+import constants.ROOM_PACKAGE_NAME
 import core.ActionHandler
-import model.FileModel
-import utils.extensions.DOT
-import utils.extensions.getPackageName
 import model.ModificationModel
 import model.ModificationStep
-import model.OpenInEditorFileType
+import utils.extensions.DOT
+import utils.extensions.getPackageName
 
 class RoomAction : BaseAction() {
 

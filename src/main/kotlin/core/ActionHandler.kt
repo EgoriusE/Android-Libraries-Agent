@@ -12,6 +12,7 @@ import model.ModificationStep
 import model.OpenInEditorFileType
 import openInEditor
 import services.NotificationsFactory
+import services.PackageHelper
 
 @Service
 class ActionHandler(
@@ -19,16 +20,14 @@ class ActionHandler(
 ) {
 
     private val gradleDependenciesManager = GradleDependenciesManager()
-    private val notificationFactory by lazy {
-        NotificationsFactory.getInstance(project)
-    }
+    private val notificationFactory by lazy { NotificationsFactory.getInstance(project) }
 
     companion object {
         fun getInstance(project: Project): ActionHandler = project.service()
     }
 
     fun handle(model: ModificationModel) {
-        val dirHelper = PackageHelper(model.module)
+        val packageHelper = PackageHelper(model.module)
 
         model.steps.forEach { step ->
             when (step) {
@@ -41,11 +40,11 @@ class ActionHandler(
                 }
 
                 is ModificationStep.GenerateCodeStep -> {
-                    val boilerPlateDir =
+                    val generatedPackage =
                         if (step.dirName != null) {
-                            dirHelper.generateDir(step.dirName)
+                            packageHelper.generatePackage(step.dirName)
                         } else {
-                            dirHelper.getPackageDir()
+                            packageHelper.getPackageDir()
                         }
 
                     val templateGenerator = TemplateGenerator(project)
@@ -53,7 +52,7 @@ class ActionHandler(
 
                     execRunWriteAction {
                         generatedFiles.forEach { fileModel ->
-                            val addedPsiElement = boilerPlateDir?.add(fileModel.psiFile)
+                            val addedPsiElement = generatedPackage?.add(fileModel.psiFile)
                             if (fileModel.isOpenInEditor) {
                                 addedPsiElement?.openInEditor()
                             }
@@ -73,7 +72,7 @@ class ActionHandler(
                     step.fileTypes.forEach { type ->
                         when (type) {
                             OpenInEditorFileType.BUILD_GRADLE_APP -> {
-                                val moduleDir = dirHelper.getModuleDir()
+                                val moduleDir = packageHelper.getModulePackage()
                                 val buildFile = moduleDir?.findFile(BUILD_GRADLE_FILE_NAME)
                                 buildFile?.openInEditor()
                             }
