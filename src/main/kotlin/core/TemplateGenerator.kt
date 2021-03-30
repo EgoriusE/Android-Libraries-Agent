@@ -4,7 +4,7 @@ import PluginConstants.DEFAULT_TEMPLATES_DIR_NAME
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
-import extensions.templateNameToFileName
+import utils.extensions.templateNameToFileName
 import freemarker.template.Configuration
 import freemarker.template.Template
 import freemarker.template.TemplateExceptionHandler

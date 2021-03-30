@@ -4,7 +4,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import constants.KOIN_D_CORE
 import constants.KOIN_D_SCOPE
 import constants.KOIN_D_VIEW_MODEL
-import core.ActionHandler
+import core.ActionHandlerService
 import model.ModificationModel
 import model.ModificationStep
 
@@ -28,7 +28,7 @@ class KoinAction : BaseAction() {
                 ),
                 module = module!!
             )
-            ActionHandler(project!!, dataModel).handle()
+            ActionHandlerService.getInstance(project!!).handle(dataModel)
         }
     }
 }

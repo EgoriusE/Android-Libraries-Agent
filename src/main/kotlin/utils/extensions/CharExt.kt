@@ -1,4 +1,4 @@
-package extensions
+package utils.extensions
 
 
 val Char.Companion.SPACE: Char get() = ' '

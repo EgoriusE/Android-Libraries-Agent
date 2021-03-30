@@ -1,4 +1,4 @@
-package extensions
+package utils.extensions
 
 import com.android.tools.idea.util.androidFacet
 import com.intellij.openapi.module.Module

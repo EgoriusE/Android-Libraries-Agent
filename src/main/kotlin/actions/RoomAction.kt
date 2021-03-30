@@ -2,11 +2,12 @@ package actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
 import constants.*
-import core.ActionHandler
-import extensions.DOT
-import extensions.getPackageName
+import core.ActionHandlerService
+import utils.extensions.DOT
+import utils.extensions.getPackageName
 import model.ModificationModel
 import model.ModificationStep
+
 
 class RoomAction : BaseAction() {
 
@@ -34,7 +35,7 @@ class RoomAction : BaseAction() {
                 ),
                 module = module!!
             )
-            ActionHandler(project!!, dataModel).handle()
+            ActionHandlerService.getInstance(project!!).handle(dataModel)
         }
     }
 }

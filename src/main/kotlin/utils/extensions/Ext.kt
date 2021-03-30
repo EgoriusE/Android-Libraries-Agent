@@ -2,6 +2,8 @@ import com.android.tools.idea.util.androidFacet
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.command.executeCommand
+import com.intellij.openapi.diagnostic.Logger
+import com.intellij.openapi.diagnostic.debug
 import com.intellij.openapi.module.Module
 import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiElement
@@ -27,4 +29,13 @@ fun execRunWriteAction(command: () -> Unit) {
             command()
         }
     }
+}
+
+fun Any.logDebug(e: Exception? = null, lazyMessage: () -> String) {
+    val logger = Logger.getInstance(this::class.java)
+    logger.debug(e) { lazyMessage() }
+}
+
+fun String.replaceLineBreaks(): String {
+    return this.replace("\n", "\n<br />", true)
 }

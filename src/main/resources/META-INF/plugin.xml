@@ -1,6 +1,9 @@
 <idea-plugin>
     <id>Android Project Generator Protype</id>
     <name>Android Project Generator</name>
+    <vendor>
+
+    </vendor>
     <!--    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>-->
 
     <!--    <description><![CDATA[-->
@@ -29,6 +32,9 @@
                     description="Add koin dependencies and some boilerplate code.">
             </action>
         </group>
-
     </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService serviceImplementation="core.ActionHandlerService"/>
+    </extensions>
 </idea-plugin>

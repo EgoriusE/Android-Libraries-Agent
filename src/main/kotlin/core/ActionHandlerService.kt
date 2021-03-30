@@ -2,20 +2,25 @@ package core
 
 import com.android.tools.idea.gradle.dsl.api.GradleBuildModel
 import com.android.tools.idea.gradle.dsl.api.GradleModelProvider
+import com.intellij.openapi.components.Service
+import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import model.ModificationModel
 import model.ModificationStep
 
-class ActionHandler(
-    private val project: Project,
-    private val model: ModificationModel
+@Service
+class ActionHandlerService(
+    private val project: Project
 ) {
 
-    private val dirHelper = DirHelper(model.module)
     private val fileAdder = FileAdder(project)
     private val gradleDependenciesManager = GradleDependenciesManager()
 
-    fun handle() {
+    companion object {
+        fun getInstance(project: Project): ActionHandlerService = project.service()
+    }
+
+    fun handle(model: ModificationModel) {
         model.steps.forEach { step ->
             when (step) {
 
@@ -27,6 +32,7 @@ class ActionHandler(
                 }
 
                 is ModificationStep.GenerateCodeStep -> {
+                    val dirHelper = DirHelper(model.module)
                     val boilerPlateDir =
                         if (step.dirName != null) {
                             dirHelper.generateDir(step.dirName)

@@ -2,9 +2,11 @@ package core
 
 import constants.CodeGeneratorConstants.IMPLEMENTATION_CONFIG_NAME
 import com.android.tools.idea.gradle.dsl.api.GradleBuildModel
+import com.intellij.idea.LoggerFactory
 import com.intellij.openapi.command.executeCommand
 import execRunWriteAction
 import org.jetbrains.kotlin.idea.util.application.runWriteAction
+import java.util.logging.Logger
 
 class GradleDependenciesManager {
 

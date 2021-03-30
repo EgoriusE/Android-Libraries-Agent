@@ -1,4 +1,4 @@
-package extensions
+package utils.extensions
 
 import com.intellij.psi.PsiDirectory
 import com.intellij.util.IncorrectOperationException

@@ -8,9 +8,9 @@ import com.intellij.openapi.module.Module
 import com.intellij.openapi.project.guessProjectDir
 import com.intellij.psi.PsiDirectory
 import execRunWriteAction
-import extensions.DOT
-import extensions.findSubdirectoryByPackageName
-import extensions.getPackageName
+import utils.extensions.DOT
+import utils.extensions.findSubdirectoryByPackageName
+import utils.extensions.getPackageName
 import org.jetbrains.kotlin.idea.core.util.toPsiDirectory
 import org.jetbrains.kotlin.idea.util.application.runWriteAction
 

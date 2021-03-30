@@ -1,4 +1,4 @@
-package extensions
+package utils.extensions
 
 fun String.templateNameToFileName(): String = this.dropLast(4).snakeToUpperCamelCase()
 
