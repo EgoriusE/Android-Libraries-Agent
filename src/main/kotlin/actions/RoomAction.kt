@@ -31,6 +31,9 @@ class RoomAction : BaseAction() {
                         ),
                         model = mapOf(ROOM_PACKAGE_NAME to module!!.getPackageName() + Char.DOT + ROOM_FOLDER_NAME),
                         dirName = ROOM_FOLDER_NAME
+                    ),
+                    ModificationStep.NotificationStep(
+                        message = "Surprise! Room lib added!"
                     )
                 ),
                 module = module!!

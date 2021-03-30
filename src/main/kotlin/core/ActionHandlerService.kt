@@ -7,6 +7,7 @@ import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import model.ModificationModel
 import model.ModificationStep
+import services.NotificationsFactory
 
 @Service
 class ActionHandlerService(
@@ -15,6 +16,9 @@ class ActionHandlerService(
 
     private val fileAdder = FileAdder(project)
     private val gradleDependenciesManager = GradleDependenciesManager()
+    private val notificationFactory by lazy {
+        NotificationsFactory.getInstance(project)
+    }
 
     companion object {
         fun getInstance(project: Project): ActionHandlerService = project.service()
@@ -47,6 +51,10 @@ class ActionHandlerService(
 
                 is ModificationStep.ExistingFiles -> {
                     SrcModifier(project).modify(model)
+                }
+
+                is ModificationStep.NotificationStep -> {
+                    notificationFactory.info(step.message)
                 }
             }
         }
