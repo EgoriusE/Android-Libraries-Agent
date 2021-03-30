@@ -1,12 +1,13 @@
 package core
 
-import CodeGeneratorConstants.JAVA_SOURCE_FOLDER_NAME
-import CodeGeneratorConstants.MAIN_SOURCE_SET_FOLDER_NAME
-import CodeGeneratorConstants.SRC_FOLDER_NAME
+import constants.CodeGeneratorConstants.JAVA_SOURCE_FOLDER_NAME
+import constants.CodeGeneratorConstants.MAIN_SOURCE_SET_FOLDER_NAME
+import constants.CodeGeneratorConstants.SRC_FOLDER_NAME
 import com.intellij.openapi.command.executeCommand
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.project.guessProjectDir
 import com.intellij.psi.PsiDirectory
+import execRunWriteAction
 import extensions.DOT
 import extensions.findSubdirectoryByPackageName
 import extensions.getPackageName
@@ -37,12 +38,11 @@ class DirHelper(private val module: Module) {
         } else null
     }
 
-    fun createBoilerplateDir(dirName: String): PsiDirectory? {
+    fun generateDir(dirName: String): PsiDirectory? {
         var dir: PsiDirectory? = null
-        executeCommand {
-            runWriteAction {
-                dir = getPackageDir()?.createSubdirectory(dirName)
-            }
+        execRunWriteAction {
+            dir = getPackageDir()?.createSubdirectory(dirName)
+
         }
         return dir
     }

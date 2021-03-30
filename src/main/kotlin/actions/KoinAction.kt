@@ -1,12 +1,15 @@
 package actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
-import constants.koin.KoinDependenciesConstants
+import constants.KOIN_D_CORE
+import constants.KOIN_D_SCOPE
+import constants.KOIN_D_VIEW_MODEL
 import core.ActionHandler
 import model.ModificationModel
 import model.ModificationStep
 
-class KoinAction : LibraryAction() {
+class KoinAction : BaseAction() {
+
 
     override fun actionPerformed(e: AnActionEvent) {
         super.actionPerformed(e)
@@ -16,16 +19,16 @@ class KoinAction : LibraryAction() {
                 steps = listOf(
                     ModificationStep.DependenciesStep(
                         dependencies = listOf(
-                            KoinDependenciesConstants.D_CORE,
-                            KoinDependenciesConstants.D_SCOPE,
-                            KoinDependenciesConstants.D_VIEW_MODEL
+                            KOIN_D_SCOPE,
+                            KOIN_D_CORE,
+                            KOIN_D_VIEW_MODEL
                         )
                     ),
                     ModificationStep.ExistingFiles()
                 ),
                 module = module!!
             )
-            ActionHandler(project!!).handle(dataModel)
+            ActionHandler(project!!, dataModel).handle()
         }
     }
 }

@@ -1,3 +1,5 @@
+package constants
+
 object CodeGeneratorConstants {
 
     const val BUILD_GRADLE_FILE_NAME = "build.gradle"

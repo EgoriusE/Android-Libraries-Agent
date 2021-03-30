@@ -6,7 +6,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.project.Project
 
-abstract class LibraryAction : AnAction() {
+abstract class BaseAction : AnAction() {
 
     protected var module: Module? = null
     protected var project: Project? = null

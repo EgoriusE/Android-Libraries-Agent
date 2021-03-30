@@ -1,17 +1,14 @@
 package core
 
-import CodeGeneratorConstants.APPLICATION_CLASS_NAME
+import constants.CodeGeneratorConstants.APPLICATION_CLASS_NAME
 import com.intellij.openapi.command.executeCommand
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElementFactory
 import com.intellij.psi.PsiFile
-import com.intellij.psi.PsiFileFactory
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.impl.source.tree.PsiWhiteSpaceImpl
-import com.intellij.psi.util.findDescendantOfType
 import model.ModificationModel
 import org.jetbrains.kotlin.idea.KotlinFileType
-import org.jetbrains.kotlin.idea.inspections.findExistingEditor
 import org.jetbrains.kotlin.idea.util.application.runWriteAction
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtImportDirective
@@ -21,6 +18,8 @@ import org.jetbrains.uast.UClass
 import org.jetbrains.uast.UFile
 import org.jetbrains.uast.toUElement
 
+// TODO (a little later): Modifying files
+// I am ashamed of this code
 class SrcModifier(private val project: Project) {
 
     private val psiElementFactory: PsiElementFactory by lazy {

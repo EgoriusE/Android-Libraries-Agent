@@ -1,46 +1,40 @@
 package actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
-import constants.room.RoomDependenciesConstants
-import constants.room.RoomTemplateConstants
+import constants.*
 import core.ActionHandler
 import extensions.DOT
 import extensions.getPackageName
 import model.ModificationModel
 import model.ModificationStep
 
-class RoomAction : LibraryAction() {
+class RoomAction : BaseAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         super.actionPerformed(e)
-
-        println("actions.RoomAction actionPerformed")
 
         if (project != null && module != null) {
             val dataModel = ModificationModel(
                 steps = listOf(
                     ModificationStep.DependenciesStep(
                         dependencies = listOf(
-                            RoomDependenciesConstants.D_KTX,
-                            RoomDependenciesConstants.D_RUNTIME
+                            ROOM_D_KTX,
+                            ROOM_D_RUNTIME
                         )
                     ),
-                    ModificationStep.BoilerPlateStep(
+                    ModificationStep.GenerateCodeStep(
                         filesNames = listOf(
-                            RoomTemplateConstants.DAO_TEMPLATE,
-                            RoomTemplateConstants.DATABASE_TEMPLATE,
-                            RoomTemplateConstants.ENTITY_TEMPLATE,
+                            ROOM_TEMPLATE_DAO,
+                            ROOM_TEMPLATE_DATABASE,
+                            ROOM_TEMPLATE_ENTITY,
                         ),
-                        model = mapOf(
-                            RoomTemplateConstants.MODEL_PARAM_PACKAGE_NAME
-                                to module!!.getPackageName() + Char.DOT + RoomTemplateConstants.FOLDER
-                        ),
-                        dirName = RoomTemplateConstants.FOLDER
+                        model = mapOf(ROOM_PACKAGE_NAME to module!!.getPackageName() + Char.DOT + ROOM_FOLDER_NAME),
+                        dirName = ROOM_FOLDER_NAME
                     )
                 ),
                 module = module!!
             )
-            ActionHandler(project!!).handle(dataModel)
+            ActionHandler(project!!, dataModel).handle()
         }
     }
 }
