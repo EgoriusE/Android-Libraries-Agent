@@ -27,28 +27,30 @@ class TemplateGenerator(private val project: Project) {
         }
     }
 
-    fun generateBoilerplate(templateNames: List<String>, model: Map<String, Any>): List<PsiFile> =
-        templateNames.map { templateName ->
+    fun generateFiles(templateNames: List<String>, model: Map<String, Any>): List<PsiFile> =
+        templateNames.map { templateName -> generateFile(templateName, model) }
 
-            val template: Template = try {
-                freeMarkerConfig.getTemplate(templateName)
+    fun generateFile(templateName: String, model: Map<String, Any>): PsiFile {
+        val template: Template = try {
+            freeMarkerConfig.getTemplate(templateName)
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            throw IllegalArgumentException("Can't find template $templateName")
+        }
+
+        val text: String = StringWriter().use { writer ->
+            try {
+                template.process(model, writer)
+                writer.buffer.toString()
             } catch (ex: Exception) {
                 ex.printStackTrace()
-                throw IllegalArgumentException("Can't find template $templateName")
+                throw UnsupportedOperationException()
             }
-
-            val text: String = StringWriter().use { writer ->
-                try {
-                    template.process(model, writer)
-                    writer.buffer.toString()
-                } catch (ex: Exception) {
-                    ex.printStackTrace()
-                    throw UnsupportedOperationException()
-                }
-            }
-            println(text)
-            val currPsiFile: PsiFile =
-                psiFileFactory.createFileFromText(templateName.templateNameToFileName(), KotlinFileType.INSTANCE, text)
-            currPsiFile
         }
+        println(text)
+        return psiFileFactory.createFileFromText(
+            templateName.templateNameToFileName(),
+            KotlinFileType.INSTANCE, text
+        )
+    }
 }

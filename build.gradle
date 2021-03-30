@@ -24,7 +24,7 @@ compileKotlin {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version '2020.2.3'
-    plugins = ['android', 'Kotlin']
+    plugins = ['android', 'Kotlin', 'java']
 }
 patchPluginXml {
     changeNotes """

@@ -11,4 +11,5 @@ object CodeGeneratorConstants {
 
     const val IMPLEMENTATION_CONFIG_NAME = "implementation"
 
+    const val APPLICATION_CLASS_NAME = "android.app.Application"
 }

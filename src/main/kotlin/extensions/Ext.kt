@@ -18,3 +18,5 @@ val Module.moduleParentPsiDirectory: PsiDirectory?
 
 val Module.rootPsiDirectory: PsiDirectory?
     get() = moduleFile?.parent?.toPsiDirectory(project)
+
+
