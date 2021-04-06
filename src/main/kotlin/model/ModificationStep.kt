@@ -33,23 +33,5 @@ sealed class ModificationStep {
 }
 
 enum class OpenInEditorFileType {
-    BUILD_GRADLE_APP, BUILD_GRADLE_PROJECT, MANIFEST,
+    BUILD_GRADLE_APP, BUILD_GRADLE_PROJECT, MANIFEST
 }
-
-enum class TypeClassToModification {
-    APP, MANIFEST
-}
-
-enum class GradleModificationType {
-    PROJECT, MODULE
-}
-
-data class DependencyModel(
-    val name: String,
-    val version: String,
-    val componentName: String,
-    val type: GradleModificationType = GradleModificationType.MODULE
-) {
-    val fullName = name + version
-}
-

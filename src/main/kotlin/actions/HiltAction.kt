@@ -9,6 +9,7 @@ import core.ActionHandler
 import model.DependencyModel
 import model.ModificationModel
 import model.ModificationStep
+import model.OpenInEditorFileType
 
 class HiltAction : BaseAction() {
 
@@ -41,6 +42,11 @@ class HiltAction : BaseAction() {
                     ),
                     ModificationStep.GradleModificationStep.PluginModification(
                         modulePlugins = listOf(HILT_P, HILT_P_KAPT)
+                    ),
+                    ModificationStep.OpenInEditorFiles(
+                        fileTypes = listOf(
+                            OpenInEditorFileType.BUILD_GRADLE_PROJECT, OpenInEditorFileType.BUILD_GRADLE_APP
+                        )
                     )
                 ),
                 module = module!!

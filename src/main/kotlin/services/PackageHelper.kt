@@ -15,7 +15,7 @@ import utils.extensions.getPackageName
 class PackageHelper(private val module: Module) {
 
     private val project = module.project
-    private val rootDir = project.guessProjectDir()?.toPsiDirectory(project)
+    val rootDir = project.guessProjectDir()?.toPsiDirectory(project)
 
     fun getModulePackage(): PsiDirectory? {
         val fullModuleNameList: List<String> = module.name.split(Char.DOT)

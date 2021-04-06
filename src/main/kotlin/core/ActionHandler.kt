@@ -73,6 +73,11 @@ class ActionHandler(
                                 val buildFile = moduleDir?.findFile(BUILD_GRADLE_FILE_NAME)
                                 buildFile?.openInEditor()
                             }
+                            OpenInEditorFileType.BUILD_GRADLE_PROJECT ->{
+                                val rootDir = packageHelper.rootDir
+                                val buildFile = rootDir?.findFile(BUILD_GRADLE_FILE_NAME)
+                                buildFile?.openInEditor()
+                            }
                             else -> {
                             } // TODO (not implemented yet)
                         }
