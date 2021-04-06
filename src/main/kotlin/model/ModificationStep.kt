@@ -3,10 +3,19 @@ package model
 
 sealed class ModificationStep {
 
-    class DependenciesStep(
-        val dependencies: List<String>,
-        val versionName: String
-    ) : ModificationStep()
+    sealed class GradleModificationStep() : ModificationStep() {
+
+        class DependencyModification(
+            val moduleDependencies: List<DependencyModel> = emptyList(),
+            val projectDependencies: List<DependencyModel> = emptyList(),
+        ) : GradleModificationStep()
+
+        class PluginModification(
+            val modulePlugins: List<String> = emptyList(),
+            val projectPlugins: List<String> = emptyList(),
+        ) : GradleModificationStep()
+
+    }
 
     class GenerateCodeStep(
         val files: List<FileModel>,
@@ -30,3 +39,17 @@ enum class OpenInEditorFileType {
 enum class TypeClassToModification {
     APP, MANIFEST
 }
+
+enum class GradleModificationType {
+    PROJECT, MODULE
+}
+
+data class DependencyModel(
+    val name: String,
+    val version: String,
+    val componentName: String,
+    val type: GradleModificationType = GradleModificationType.MODULE
+) {
+    val fullName = name + version
+}
+

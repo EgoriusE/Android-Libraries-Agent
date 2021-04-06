@@ -12,6 +12,8 @@ object CodeGeneratorConstants {
     const val EMPTY_OBJECT_PROPERTY_NAME = "EMPTY"
 
     const val IMPLEMENTATION_CONFIG_NAME = "implementation"
+    const val CLASSPATH_CONFIG_NAME = "classpath"
+    const val KAPT_CONFIG_NAME = "kapt"
 
     const val APPLICATION_CLASS_NAME = "android.app.Application"
 }

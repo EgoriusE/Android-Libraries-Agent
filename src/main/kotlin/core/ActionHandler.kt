@@ -18,7 +18,7 @@ import services.PackageHelper
 class ActionHandler(
     private val project: Project
 ) {
-
+    private val projectGradleBuildModel: GradleBuildModel? = GradleModelProvider.get().getBuildModel(project)
     private val gradleDependenciesManager = GradleDependenciesManager()
     private val notificationFactory by lazy { NotificationsFactory.getInstance(project) }
 
@@ -32,11 +32,8 @@ class ActionHandler(
         model.steps.forEach { step ->
             when (step) {
 
-                is ModificationStep.DependenciesStep -> {
-                    val buildModel: GradleBuildModel? = GradleModelProvider.get().getBuildModel(model.module)
-                    if (buildModel != null) {
-                        gradleDependenciesManager.addDependencies(buildModel, step.dependencies, step.versionName)
-                    }
+                is ModificationStep.GradleModificationStep -> {
+                    proccessGradleModificationStep(step, model)
                 }
 
                 is ModificationStep.GenerateCodeStep -> {
@@ -83,6 +80,42 @@ class ActionHandler(
                 }
 
             }
+        }
+
+//        gradleProjectSystemSyncManager.syncProject(ProjectSystemSyncManager.SyncReason.PROJECT_MODIFIED)
+    }
+
+    private fun proccessGradleModificationStep(
+        step: ModificationStep.GradleModificationStep,
+        model: ModificationModel
+    ) {
+
+        val buildModuleModel: GradleBuildModel? = GradleModelProvider.get().getBuildModel(model.module)
+
+        when (step) {
+            is ModificationStep.GradleModificationStep.DependencyModification -> {
+
+                if (buildModuleModel != null && step.moduleDependencies.isNotEmpty()) {
+                    gradleDependenciesManager.addDependencies(
+                        buildModel = buildModuleModel,
+                        dependencies = step.moduleDependencies
+                    )
+                }
+
+                if (projectGradleBuildModel != null && step.projectDependencies.isNotEmpty()) {
+                    gradleDependenciesManager.addDependencies(
+                        buildModel = projectGradleBuildModel.buildscript(),
+                        dependencies = step.projectDependencies
+                    )
+                    execRunWriteAction { projectGradleBuildModel.applyChanges() }
+                }
+            }
+            is ModificationStep.GradleModificationStep.PluginModification -> {
+                if (buildModuleModel != null && step.modulePlugins.isNotEmpty()) {
+                    gradleDependenciesManager.addPlugins(buildModuleModel, step.modulePlugins)
+                }
+            }
+
         }
     }
 }

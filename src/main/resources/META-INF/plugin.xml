@@ -31,6 +31,9 @@
             <action class="actions.KoinAction" text="Add Koin"
                     description="Add koin dependencies and some boilerplate code.">
             </action>
+            <action class="actions.HiltAction" text="Add Hilt"
+                    description="Add Hilt dependencies and some boilerplate code.">
+            </action>
         </group>
     </actions>
 

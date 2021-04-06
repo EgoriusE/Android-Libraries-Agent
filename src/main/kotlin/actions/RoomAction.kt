@@ -2,7 +2,9 @@ package actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
 import constants.*
+import constants.CodeGeneratorConstants.IMPLEMENTATION_CONFIG_NAME
 import core.ActionHandler
+import model.DependencyModel
 import model.FileModel
 import model.ModificationModel
 import model.ModificationStep
@@ -18,12 +20,19 @@ class RoomAction : BaseAction() {
             val templateModel = mapOf(ROOM_PACKAGE_NAME to module!!.getPackageName() + Char.DOT + ROOM_FOLDER_NAME)
             val dataModel = ModificationModel(
                 steps = listOf(
-                    ModificationStep.DependenciesStep(
-                        dependencies = listOf(
-                            ROOM_D_KTX,
-                            ROOM_D_RUNTIME
-                        ),
-                        versionName = ROOM_VERSION
+                    ModificationStep.GradleModificationStep.DependencyModification(
+                        moduleDependencies = listOf(
+                            DependencyModel(
+                                name = ROOM_D_KTX,
+                                version = ROOM_VERSION,
+                                componentName = IMPLEMENTATION_CONFIG_NAME
+                            ),
+                            DependencyModel(
+                                name = ROOM_D_KTX,
+                                version = ROOM_VERSION,
+                                componentName = IMPLEMENTATION_CONFIG_NAME
+                            )
+                        )
                     ),
                     ModificationStep.GenerateCodeStep(
                         files = listOf(
@@ -36,7 +45,7 @@ class RoomAction : BaseAction() {
                     ModificationStep.NotificationStep(
                         message = "Surprise! Room lib added!"
                     ),
-                ModificationStep.OpenInEditorFiles()
+                    ModificationStep.OpenInEditorFiles()
                 ),
                 module = module!!
             )

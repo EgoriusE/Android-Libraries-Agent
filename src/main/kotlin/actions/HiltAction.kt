@@ -1,17 +1,16 @@
 package actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
+import constants.*
+import constants.CodeGeneratorConstants.CLASSPATH_CONFIG_NAME
 import constants.CodeGeneratorConstants.IMPLEMENTATION_CONFIG_NAME
-import constants.KOIN_D_CORE
-import constants.KOIN_D_SCOPE
-import constants.KOIN_D_VIEW_MODEL
-import constants.KOIN_VERSION
+import constants.CodeGeneratorConstants.KAPT_CONFIG_NAME
 import core.ActionHandler
 import model.DependencyModel
 import model.ModificationModel
 import model.ModificationStep
 
-class KoinAction : BaseAction() {
+class HiltAction : BaseAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         super.actionPerformed(e)
@@ -22,23 +21,27 @@ class KoinAction : BaseAction() {
                     ModificationStep.GradleModificationStep.DependencyModification(
                         moduleDependencies = listOf(
                             DependencyModel(
-                                name = KOIN_D_SCOPE,
-                                version = KOIN_VERSION,
-                                componentName = IMPLEMENTATION_CONFIG_NAME
+                                name = HILT_D_COMPILER,
+                                version = HILT_VERSION,
+                                componentName = KAPT_CONFIG_NAME
                             ),
                             DependencyModel(
-                                name = KOIN_D_CORE,
-                                version = KOIN_VERSION,
+                                name = HILT_D_MODULE,
+                                version = HILT_VERSION,
                                 componentName = IMPLEMENTATION_CONFIG_NAME
-                            ),
+                            )
+                        ),
+                        projectDependencies = listOf(
                             DependencyModel(
-                                name = KOIN_D_VIEW_MODEL,
-                                version = KOIN_VERSION,
-                                componentName = IMPLEMENTATION_CONFIG_NAME
+                                name = HILT_D_PROJECT,
+                                version = HILT_VERSION,
+                                componentName = CLASSPATH_CONFIG_NAME
                             )
                         )
                     ),
-                    ModificationStep.ExistingFiles()
+                    ModificationStep.GradleModificationStep.PluginModification(
+                        modulePlugins = listOf(HILT_P, HILT_P_KAPT)
+                    )
                 ),
                 module = module!!
             )

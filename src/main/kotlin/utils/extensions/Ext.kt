@@ -1,3 +1,4 @@
+import com.android.tools.idea.gradle.dsl.api.GradleBuildModel
 import com.android.tools.idea.gradle.dsl.api.dependencies.ArtifactDependencyModel
 import com.android.tools.idea.util.androidFacet
 import com.intellij.ide.util.EditorHelper
@@ -56,4 +57,8 @@ fun ArtifactDependencyModel.isEquals(dependencyName: String) =
 
 fun ArtifactDependencyModel.getGroupName(): String {
     return group().toString() + ":" + name().toString() + ":"
+}
+
+fun GradleBuildModel.isPluginExist(pluginName: String): Boolean {
+    return plugins().any { it.name().toString() == pluginName }
 }
