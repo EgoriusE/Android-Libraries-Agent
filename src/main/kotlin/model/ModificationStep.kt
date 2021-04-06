@@ -3,7 +3,10 @@ package model
 
 sealed class ModificationStep {
 
-    class DependenciesStep(val dependencies: List<String>) : ModificationStep()
+    class DependenciesStep(
+        val dependencies: List<String>,
+        val versionName: String
+    ) : ModificationStep()
 
     class GenerateCodeStep(
         val files: List<FileModel>,

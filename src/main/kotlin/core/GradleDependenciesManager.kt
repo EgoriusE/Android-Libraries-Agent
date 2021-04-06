@@ -1,25 +1,33 @@
 package core
 
-import constants.CodeGeneratorConstants.IMPLEMENTATION_CONFIG_NAME
 import com.android.tools.idea.gradle.dsl.api.GradleBuildModel
-import com.intellij.idea.LoggerFactory
-import com.intellij.openapi.command.executeCommand
+import com.android.tools.idea.gradle.dsl.api.dependencies.ArtifactDependencyModel
+import constants.CodeGeneratorConstants.IMPLEMENTATION_CONFIG_NAME
 import execRunWriteAction
-import org.jetbrains.kotlin.idea.util.application.runWriteAction
-import java.util.logging.Logger
+import isEquals
 
 class GradleDependenciesManager {
 
-    fun addDependencies(buildModel: GradleBuildModel, dependencies: List<String>) {
+    fun addDependencies(buildModel: GradleBuildModel, dependencies: List<String>, version: String) {
         execRunWriteAction {
             buildModel.apply {
-                dependencies.forEach { dependencies().addArtifact(IMPLEMENTATION_CONFIG_NAME, it) }
+                dependencies.forEach { dependencyName ->
+                    if (!isDependencyExist(buildModel, dependencyName)) {
+                        dependencies().addArtifact(IMPLEMENTATION_CONFIG_NAME, dependencyName + version)
+                    }
+                }
                 applyChanges()
             }
         }
     }
 
-    fun checkDependenciesExist(buildModel: GradleBuildModel) {
-        buildModel.dependencies().all()
+    private fun isDependencyExist(buildModel: GradleBuildModel, dependencyName: String): Boolean {
+        return buildModel
+            .dependencies()
+            .all()
+            .any { dependencyModel ->
+                dependencyModel is ArtifactDependencyModel
+                        && dependencyModel.isEquals(dependencyName)
+            }
     }
 }

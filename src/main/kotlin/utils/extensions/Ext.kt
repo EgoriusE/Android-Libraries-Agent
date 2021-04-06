@@ -1,3 +1,4 @@
+import com.android.tools.idea.gradle.dsl.api.dependencies.ArtifactDependencyModel
 import com.android.tools.idea.util.androidFacet
 import com.intellij.ide.util.EditorHelper
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -47,4 +48,12 @@ fun PsiElement.openInEditor() {
         EditorHelper.openInEditor(this)
         ToolWindowManager.getInstance(project).activateEditorComponent()
     }
+}
+
+fun ArtifactDependencyModel.isEquals(dependencyName: String) =
+    getGroupName() == dependencyName
+
+
+fun ArtifactDependencyModel.getGroupName(): String {
+    return group().toString() + ":" + name().toString() + ":"
 }

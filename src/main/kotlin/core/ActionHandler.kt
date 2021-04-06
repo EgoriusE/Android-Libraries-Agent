@@ -35,7 +35,7 @@ class ActionHandler(
                 is ModificationStep.DependenciesStep -> {
                     val buildModel: GradleBuildModel? = GradleModelProvider.get().getBuildModel(model.module)
                     if (buildModel != null) {
-                        gradleDependenciesManager.addDependencies(buildModel, step.dependencies)
+                        gradleDependenciesManager.addDependencies(buildModel, step.dependencies, step.versionName)
                     }
                 }
 

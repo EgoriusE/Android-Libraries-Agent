@@ -4,6 +4,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import constants.KOIN_D_CORE
 import constants.KOIN_D_SCOPE
 import constants.KOIN_D_VIEW_MODEL
+import constants.KOIN_VERSION
 import core.ActionHandler
 import model.ModificationModel
 import model.ModificationStep
@@ -21,7 +22,8 @@ class KoinAction : BaseAction() {
                             KOIN_D_SCOPE,
                             KOIN_D_CORE,
                             KOIN_D_VIEW_MODEL
-                        )
+                        ),
+                        versionName = KOIN_VERSION
                     ),
                     ModificationStep.ExistingFiles()
                 ),
