@@ -24,14 +24,27 @@
     <actions>
         <!-- Add your actions here -->
         <group id="org.intellij.sdk.action.GroupedActions" text="Android Project Generator" popup="true">
+
+            <action id="GeneratorIdeaQuickList"
+                    class="actions.QuickListAction" text="Generator List Popup..."
+                    description="Bla bla bla ">
+                <keyboard-shortcut keymap="Mac OS X" first-keystroke="shift ctrl A"/>
+                <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift ctrl A"/>
+                <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt A"/>
+            </action>
+
             <add-to-group group-id="NewGroup" anchor="last"/>
-            <action class="actions.RoomAction" text="Add Room"
+            <action
+                    id="RoomAction"
+                    class="actions.RoomAction" text="Add Room"
                     description="Add room dependencies and some boilerplate code.">
             </action>
-            <action class="actions.KoinAction" text="Add Koin"
+            <action id="KoinAction"
+                    class="actions.KoinAction" text="Add Koin"
                     description="Add koin dependencies and some boilerplate code.">
             </action>
-            <action class="actions.HiltAction" text="Add Hilt"
+            <action id="HiltAction"
+                    class="actions.HiltAction" text="Add Hilt"
                     description="Add Hilt dependencies and some boilerplate code.">
             </action>
         </group>
