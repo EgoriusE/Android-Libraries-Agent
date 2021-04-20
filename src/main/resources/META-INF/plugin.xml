@@ -61,6 +61,10 @@
                     description="Add Timber dependencies and some boilerplate code.">
             </action>
 
+            <action id="DaggerAction"
+                    class="actions.DaggerAction" text="Add Dagger"
+                    description="Add Dagger dependencies and some boilerplate code.">
+            </action>
         </group>
     </actions>
 

@@ -31,3 +31,9 @@ const val RETROFIT_D = "com.squareup.retrofit2:retrofit:"
 
 const val TIMBER_VERSION = "4.7.1"
 const val TIMBER_D = "com.jakewharton.timber:timber:"
+
+// Dagger
+
+const val DAGGER_VERSION = "2.34.1"
+const val DAGGER_D = "com.google.dagger:dagger:"
+const val DAGGER_D_COMPILER = "com.google.dagger:dagger-compiler:"
