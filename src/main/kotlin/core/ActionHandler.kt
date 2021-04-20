@@ -2,6 +2,8 @@ package core
 
 import com.android.tools.idea.gradle.dsl.api.GradleBuildModel
 import com.android.tools.idea.gradle.dsl.api.GradleModelProvider
+import com.android.tools.idea.projectsystem.ProjectSystemSyncManager
+import com.android.tools.idea.projectsystem.gradle.GradleProjectSystemSyncManager
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
@@ -21,6 +23,7 @@ class ActionHandler(
     private val projectGradleBuildModel: GradleBuildModel? = GradleModelProvider.get().getBuildModel(project)
     private val gradleDependenciesManager = GradleDependenciesManager()
     private val notificationFactory by lazy { NotificationsFactory.getInstance(project) }
+    private val gradleProjectSystemSyncManager = GradleProjectSystemSyncManager(project)
 
     companion object {
         fun getInstance(project: Project): ActionHandler = project.service()
@@ -87,7 +90,7 @@ class ActionHandler(
             }
         }
 
-//        gradleProjectSystemSyncManager.syncProject(ProjectSystemSyncManager.SyncReason.PROJECT_MODIFIED)
+        gradleProjectSystemSyncManager.syncProject(ProjectSystemSyncManager.SyncReason.PROJECT_MODIFIED)
     }
 
     private fun proccessGradleModificationStep(
