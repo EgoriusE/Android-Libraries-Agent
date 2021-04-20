@@ -56,6 +56,11 @@
                     description="Add Retrofit dependencies and some boilerplate code.">
             </action>
 
+            <action id="TimberAction"
+                    class="actions.TimberAction" text="Add Timber"
+                    description="Add Timber dependencies and some boilerplate code.">
+            </action>
+
         </group>
     </actions>
 

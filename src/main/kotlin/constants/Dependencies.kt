@@ -26,3 +26,8 @@ const val HILT_P_KAPT = "kotlin-kapt"
 
 const val RETROFIT_VERSION = "2.9.0"
 const val RETROFIT_D = "com.squareup.retrofit2:retrofit:"
+
+// Timber
+
+const val TIMBER_VERSION = "4.7.1"
+const val TIMBER_D = "com.jakewharton.timber:timber:"
