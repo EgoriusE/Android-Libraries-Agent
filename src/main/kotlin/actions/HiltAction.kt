@@ -47,6 +47,9 @@ class HiltAction : BaseAction() {
                         fileTypes = listOf(
                             OpenInEditorFileType.BUILD_GRADLE_PROJECT, OpenInEditorFileType.BUILD_GRADLE_APP
                         )
+                    ),
+                    ModificationStep.NotificationStep(
+                        message = HILT_N_MSG
                     )
                 ),
                 module = module!!

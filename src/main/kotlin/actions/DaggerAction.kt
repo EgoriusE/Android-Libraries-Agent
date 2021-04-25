@@ -45,7 +45,7 @@ class DaggerAction : BaseAction() {
                         dirName = DAGGER_F_NAME
                     ),
                     ModificationStep.NotificationStep(
-                        message = "Surprise! Dagger lib added!"
+                        message = DAGGER_N_MSG
                     )
                 ),
                 module = module!!

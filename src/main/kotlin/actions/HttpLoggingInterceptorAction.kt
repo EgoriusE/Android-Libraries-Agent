@@ -38,7 +38,7 @@ class HttpLoggingInterceptorAction : BaseAction() {
                         dirName = LOG_INTERCEPTOR_F_NAME
                     ),
                     ModificationStep.NotificationStep(
-                        message = "Surprise! http logging interceptor lib added!"
+                        message = LOG_INTERCEPTOR_N_MSG
                     )
                 ),
                 module = module!!

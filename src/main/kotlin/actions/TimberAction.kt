@@ -3,6 +3,7 @@ package actions
 import com.intellij.openapi.actionSystem.AnActionEvent
 import constants.CodeGeneratorConstants.IMPLEMENTATION_CONFIG_NAME
 import constants.TIMBER_D
+import constants.TIMBER_N_MSG
 import constants.TIMBER_VERSION
 import core.ActionHandler
 import model.DependencyModel
@@ -29,6 +30,9 @@ class TimberAction : BaseAction() {
                     ),
                     ModificationStep.OpenInEditorFiles(
                         fileTypes = listOf(OpenInEditorFileType.BUILD_GRADLE_APP)
+                    ),
+                    ModificationStep.NotificationStep(
+                        message = TIMBER_N_MSG
                     )
                 ),
                 module = module!!

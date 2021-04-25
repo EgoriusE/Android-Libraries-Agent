@@ -42,7 +42,7 @@ class RetrofitAction : BaseAction() {
                         dirName = RETROFIT_F_NAME
                     ),
                     ModificationStep.NotificationStep(
-                        message = "Bang bang bang Retrofit inda house!"
+                        message = RETROFIT_N_MSG
                     )
                 ),
                 module = module!!

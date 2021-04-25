@@ -1,11 +1,8 @@
 package actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
+import constants.*
 import constants.CodeGeneratorConstants.IMPLEMENTATION_CONFIG_NAME
-import constants.KOIN_D_CORE
-import constants.KOIN_D_SCOPE
-import constants.KOIN_D_VIEW_MODEL
-import constants.KOIN_VERSION
 import core.ActionHandler
 import model.DependencyModel
 import model.ModificationModel
@@ -37,6 +34,9 @@ class KoinAction : BaseAction() {
                                 componentName = IMPLEMENTATION_CONFIG_NAME
                             )
                         )
+                    ),
+                    ModificationStep.NotificationStep(
+                        message = KOIN_N_MSG
                     ),
                     ModificationStep.ExistingFiles()
                 ),

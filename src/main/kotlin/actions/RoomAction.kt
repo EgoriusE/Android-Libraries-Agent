@@ -43,7 +43,7 @@ class RoomAction : BaseAction() {
                         dirName = ROOM_F_NAME
                     ),
                     ModificationStep.NotificationStep(
-                        message = "Surprise! Room lib added!"
+                        message = ROOM_N_MSG
                     ),
                     ModificationStep.OpenInEditorFiles()
                 ),
