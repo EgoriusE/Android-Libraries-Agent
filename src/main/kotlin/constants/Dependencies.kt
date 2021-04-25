@@ -37,3 +37,8 @@ const val TIMBER_D = "com.jakewharton.timber:timber:"
 const val DAGGER_VERSION = "2.34.1"
 const val DAGGER_D = "com.google.dagger:dagger:"
 const val DAGGER_D_COMPILER = "com.google.dagger:dagger-compiler:"
+
+// Okhttp logging interceptor
+
+const val LOG_INTERCEPTOR_VERSION = "4.9.1"
+const val LOG_INTERCEPTOR_D = "com.squareup.okhttp3:logging-interceptor:"

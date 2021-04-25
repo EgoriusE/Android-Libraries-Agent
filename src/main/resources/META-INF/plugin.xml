@@ -65,6 +65,12 @@
                     class="actions.DaggerAction" text="Add Dagger"
                     description="Add Dagger dependencies and some boilerplate code.">
             </action>
+
+            <action id="HttpLoggingInterceptorAction"
+                    class="actions.HttpLoggingInterceptorAction" text="Add Okhttp Logging Interceptor"
+                    description="Add Okhttp Logging Interceptor dependency and some boilerplate code.">
+            </action>
+
         </group>
     </actions>
 
