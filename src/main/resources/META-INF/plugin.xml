@@ -71,6 +71,11 @@
                     description="Add Okhttp Logging Interceptor dependency and some boilerplate code.">
             </action>
 
+            <action id="FirebaseAction"
+                    class="actions.FirebaseAction" text="Add Firebase"
+                    description="Add Firebase Logging Interceptor dependency and some boilerplate code.">
+            </action>
+
         </group>
     </actions>
 

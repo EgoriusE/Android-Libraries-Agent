@@ -7,6 +7,7 @@ import com.intellij.notification.NotificationType
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
+import constants.PluginConstants.PLUGIN_NAME
 import utils.extensions.replaceLineBreaks
 import javax.swing.event.HyperlinkEvent
 
@@ -17,9 +18,9 @@ class NotificationsFactory(
 ) : NotificationListener {
 
     companion object {
-        val NOTIFICATIONS_TITLE = "Android Generator"
-        private val LOGGING_NOTIFICATION_GROUP_ID = "$NOTIFICATIONS_TITLE (Logging)"
-        private val ERROR_NOTIFICATION_GROUP_ID = "$NOTIFICATIONS_TITLE (Errors)"
+        private const val NOTIFICATIONS_TITLE = PLUGIN_NAME
+        private const val LOGGING_NOTIFICATION_GROUP_ID = "$NOTIFICATIONS_TITLE (Logging)"
+        private const  val ERROR_NOTIFICATION_GROUP_ID = "$NOTIFICATIONS_TITLE (Errors)"
 
         fun getInstance(project: Project): NotificationsFactory = project.service()
     }

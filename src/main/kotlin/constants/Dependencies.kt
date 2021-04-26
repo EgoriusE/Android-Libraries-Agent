@@ -42,3 +42,11 @@ const val DAGGER_D_COMPILER = "com.google.dagger:dagger-compiler:"
 
 const val LOG_INTERCEPTOR_VERSION = "4.9.1"
 const val LOG_INTERCEPTOR_D = "com.squareup.okhttp3:logging-interceptor:"
+
+// Firebase
+
+const val FIREBASE_VERSION_PROJECT = "4.3.5"
+const val FIREBASE_VERSION_MODULE = "27.1.0"
+const val FIREBASE_D_PROJECT = "com.google.gms:google-services:"
+const val FIREBASE_P_MODULE = "com.google.gms.google-services"
+const val FIREBASE_D_MODULE = "com.google.firebase:firebase-bom:"

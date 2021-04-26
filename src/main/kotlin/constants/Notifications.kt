@@ -27,3 +27,7 @@ const val DAGGER_N_MSG = "Surprise! Dagger lib added!"
 // Okhttp logging interceptor
 
 const val LOG_INTERCEPTOR_N_MSG = "Surprise! http logging interceptor lib added!"
+
+// Firebase
+
+const val FIREBASE_N_MSG = "Surprise! Firebase lib added!"

@@ -3,7 +3,7 @@ package model
 
 sealed class ModificationStep {
 
-    sealed class GradleModificationStep() : ModificationStep() {
+    sealed class GradleModificationStep : ModificationStep() {
 
         class DependencyModification(
             val moduleDependencies: List<DependencyModel> = emptyList(),
@@ -30,6 +30,8 @@ sealed class ModificationStep {
     class OpenInEditorFiles(
         val fileTypes: List<OpenInEditorFileType> = listOf(OpenInEditorFileType.BUILD_GRADLE_APP)
     ) : ModificationStep()
+
+    object CopyJsonToProjectStep : ModificationStep()
 }
 
 enum class OpenInEditorFileType {

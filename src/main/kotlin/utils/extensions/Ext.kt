@@ -7,12 +7,18 @@ import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.command.executeCommand
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.diagnostic.debug
+import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory
+import com.intellij.openapi.fileChooser.ex.FileChooserDialogImpl
 import com.intellij.openapi.module.Module
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.ui.Messages
+import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.psi.PsiBinaryFile
 import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiElement
 import com.intellij.refactoring.copy.CopyHandler
+import constants.PluginConstants
 import org.jetbrains.android.facet.AndroidFacet
 import org.jetbrains.kotlin.idea.core.util.toPsiDirectory
 import org.jetbrains.kotlin.idea.util.application.runWriteAction
@@ -51,7 +57,7 @@ fun PsiElement.openInEditor() {
     }
 }
 
-fun ArtifactDependencyModel.isEquals(dependencyName: String) =
+fun ArtifactDependencyModel.isEqualName(dependencyName: String) =
     getGroupName() == dependencyName
 
 
@@ -61,4 +67,27 @@ fun ArtifactDependencyModel.getGroupName(): String {
 
 fun GradleBuildModel.isPluginExist(pluginName: String): Boolean {
     return plugins().any { it.name().toString() == pluginName }
+}
+
+fun Project.showChooseSingleFileDialog(title: String? = null): Array<out VirtualFile>? {
+    val fileDescriptor = FileChooserDescriptorFactory
+        .createSingleFileDescriptor()
+        .apply {
+            title?.let { this.title = it }
+        }
+    val dialog = FileChooserDialogImpl(fileDescriptor, this)
+    return dialog.choose(this, null)
+}
+
+fun Project.showMessage(msg: String) {
+    Messages.showMessageDialog(
+        this,
+        msg,
+        PluginConstants.PLUGIN_NAME,
+        Messages.getInformationIcon()
+    )
+}
+
+fun Module.showMessage(msg: String) {
+    this.project.showMessage(msg)
 }

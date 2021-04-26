@@ -5,7 +5,7 @@ import com.android.tools.idea.gradle.dsl.api.GradleBuildModel
 import com.android.tools.idea.gradle.dsl.api.dependencies.ArtifactDependencyModel
 import com.android.tools.idea.gradle.dsl.api.dependencies.DependenciesModel
 import execRunWriteAction
-import isEquals
+import isEqualName
 import isPluginExist
 import model.DependencyModel
 
@@ -28,7 +28,7 @@ class GradleDependenciesManager {
             .all()
             .any { dependencyModel ->
                 dependencyModel is ArtifactDependencyModel
-                        && dependencyModel.isEquals(dependencyName)
+                        && dependencyModel.isEqualName(dependencyName)
             }
     }
 

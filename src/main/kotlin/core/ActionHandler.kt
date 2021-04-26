@@ -36,7 +36,7 @@ class ActionHandler(
             when (step) {
 
                 is ModificationStep.GradleModificationStep -> {
-                    proccessGradleModificationStep(step, model)
+                    processGradleModificationStep(step, model)
                 }
 
                 is ModificationStep.GenerateCodeStep -> {
@@ -76,7 +76,7 @@ class ActionHandler(
                                 val buildFile = moduleDir?.findFile(BUILD_GRADLE_FILE_NAME)
                                 buildFile?.openInEditor()
                             }
-                            OpenInEditorFileType.BUILD_GRADLE_PROJECT ->{
+                            OpenInEditorFileType.BUILD_GRADLE_PROJECT -> {
                                 val rootDir = packageHelper.rootDir
                                 val buildFile = rootDir?.findFile(BUILD_GRADLE_FILE_NAME)
                                 buildFile?.openInEditor()
@@ -87,13 +87,16 @@ class ActionHandler(
                     }
                 }
 
+                is ModificationStep.CopyJsonToProjectStep -> {
+                    FirebaseHelper.execute(model.module)
+                }
             }
         }
 
         gradleProjectSystemSyncManager.syncProject(ProjectSystemSyncManager.SyncReason.PROJECT_MODIFIED)
     }
 
-    private fun proccessGradleModificationStep(
+    private fun processGradleModificationStep(
         step: ModificationStep.GradleModificationStep,
         model: ModificationModel
     ) {
