@@ -24,7 +24,6 @@
     <actions>
         <!-- Add your actions here -->
         <group id="org.intellij.sdk.action.GroupedActions" text="Android Project Generator" popup="true">
-
             <add-to-group group-id="NewGroup" anchor="last"/>
 
             <action id="GeneratorIdeaQuickList"
@@ -35,11 +34,27 @@
                 <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt A"/>
             </action>
 
+            <separator text="Network"/>
+
+            <action id="RetrofitAction"
+                    class="actions.RetrofitAction" text="Add Retrofit"
+                    description="Add Retrofit dependencies and some boilerplate code.">
+            </action>
+
+            <action id="HttpLoggingInterceptorAction"
+                    class="actions.HttpLoggingInterceptorAction" text="Add Okhttp Logging Interceptor"
+                    description="Add Okhttp Logging Interceptor dependency and some boilerplate code.">
+            </action>
+
+            <separator text="Data"/>
+
             <action
                     id="RoomAction"
                     class="actions.RoomAction" text="Add Room"
                     description="Add room dependencies and some boilerplate code.">
             </action>
+
+            <separator text="Di"/>
 
             <action id="KoinAction"
                     class="actions.KoinAction" text="Add Koin"
@@ -51,29 +66,21 @@
                     description="Add Hilt dependencies and some boilerplate code.">
             </action>
 
-            <action id="RetrofitAction"
-                    class="actions.RetrofitAction" text="Add Retrofit"
-                    description="Add Retrofit dependencies and some boilerplate code.">
+            <action id="DaggerAction"
+                    class="actions.DaggerAction" text="Add Dagger"
+                    description="Add Dagger dependencies and some boilerplate code.">
             </action>
+
+            <separator text="Other"/>
 
             <action id="TimberAction"
                     class="actions.TimberAction" text="Add Timber"
                     description="Add Timber dependencies and some boilerplate code.">
             </action>
 
-            <action id="DaggerAction"
-                    class="actions.DaggerAction" text="Add Dagger"
-                    description="Add Dagger dependencies and some boilerplate code.">
-            </action>
-
-            <action id="HttpLoggingInterceptorAction"
-                    class="actions.HttpLoggingInterceptorAction" text="Add Okhttp Logging Interceptor"
-                    description="Add Okhttp Logging Interceptor dependency and some boilerplate code.">
-            </action>
-
             <action id="FirebaseAction"
                     class="actions.FirebaseAction" text="Add Firebase"
-                    description="Add Firebase Logging Interceptor dependency and some boilerplate code.">
+                    description="Add Firebase and some boilerplate code.">
             </action>
 
         </group>
