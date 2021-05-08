@@ -23,18 +23,18 @@
     <actions>
 
         <!-- Actions -->
-        <group id="org.intellij.sdk.action.GroupedActions" text="Android Project Generator" popup="true">
+        <group id="org.intellij.sdk.action.GroupedActions" text="Android Libraries Agent" popup="true">
             <add-to-group group-id="NewGroup" anchor="last"/>
 
-            <action id="com.bobrusik.plugin.android_libraries_agent.GeneratorIdeaQuickList"
-                    class="actions.QuickListAction" text="Android Libraries Agent List Popup..."
-                    description="Bla bla bla ">
-                <keyboard-shortcut keymap="Mac OS X" first-keystroke="shift ctrl A"/>
-                <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift ctrl A"/>
-                <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt A"/>
-            </action>
+<!--            <action id="com.bobrusik.plugin.android_libraries_agent.GeneratorIdeaQuickList"-->
+<!--                    class="actions.QuickListAction" text="Android Libraries Agent List Popup..."-->
+<!--                    description="Bla bla bla ">-->
+<!--                <keyboard-shortcut keymap="Mac OS X" first-keystroke="shift ctrl A"/>-->
+<!--                <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift ctrl A"/>-->
+<!--                <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt A"/>-->
+<!--            </action>-->
 
-            <separator/>
+<!--            <separator/>-->
 
             <action id="com.bobrusik.plugin.android_libraries_agent.RetrofitAction"
                     class="actions.RetrofitAction" text="Retrofit"
