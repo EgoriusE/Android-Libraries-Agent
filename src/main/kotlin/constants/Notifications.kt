@@ -31,3 +31,7 @@ const val LOG_INTERCEPTOR_N_MSG = "Http logging interceptor successfully added!"
 // Firebase
 
 const val FIREBASE_N_MSG = "Firebase successfully added!"
+
+// Datastore
+
+const val DATASTORE_N_MSG = "Datastore successfully added!"

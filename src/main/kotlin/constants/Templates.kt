@@ -26,3 +26,10 @@ const val DAGGER_F_NAME = "di"
 
 const val LOG_INTERCEPTOR_T = "logging_interceptor.kt.ftl"
 const val LOG_INTERCEPTOR_F_NAME = "interceptor"
+
+// Datastore
+
+const val DATASTORE_F_NAME = "data"
+const val DATASTORE_T_EXAMPLE = "datastore_example.kt.ftl"
+
+

@@ -58,6 +58,12 @@
                     description="Adds Room library and boilerplate code for it">
             </action>
 
+            <action
+                    id="com.bobrusik.plugin.android_libraries_agent.DatastoreAction"
+                    class="actions.DatastoreAction" text="DataStore"
+                    description="Adds Datastore library and boilerplate code for it">
+            </action>
+
             <separator/>
 
             <action id="com.bobrusik.plugin.android_libraries_agent.KoinAction"

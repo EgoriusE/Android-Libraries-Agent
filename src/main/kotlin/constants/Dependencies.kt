@@ -51,3 +51,10 @@ const val FIREBASE_VERSION_MODULE = "27.1.0"
 const val FIREBASE_D_PROJECT = "com.google.gms:google-services:"
 const val FIREBASE_P_MODULE = "com.google.gms.google-services"
 const val FIREBASE_D_MODULE = "com.google.firebase:firebase-bom:"
+
+// Datastore
+
+const val DATASTORE_VERSION = "1.0.0-beta01"
+const val DATASTORE_D_PROJECT = "androidx.datastore:datastore-preferences:"
+const val DATASTORE_D_RX_JAVA2 = "androidx.datastore:datastore-preferences-rxjava2:"
+const val DATASTORE_D_RX_JAVA3 = "androidx.datastore:datastore-preferences-rxjava3:"
