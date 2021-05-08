@@ -9,12 +9,14 @@ import constants.CodeGeneratorConstants.SRC_FOLDER_NAME
 import execRunWriteAction
 import org.jetbrains.kotlin.idea.core.util.toPsiDirectory
 import utils.extensions.DOT
+import utils.extensions.canCreateSubdirectory
 import utils.extensions.findSubdirectoryByPackageName
 import utils.extensions.getPackageName
 
 class PackageHelper(private val module: Module) {
 
     private val project = module.project
+    private val notificationFactory by lazy { NotificationsFactory.getInstance(project) }
     val rootDir = project.guessProjectDir()?.toPsiDirectory(project)
 
     fun getModulePackage(): PsiDirectory? {
@@ -38,7 +40,17 @@ class PackageHelper(private val module: Module) {
 
     fun generatePackage(dirName: String): PsiDirectory? {
         var dir: PsiDirectory? = null
-        execRunWriteAction { dir = getPackageDir()?.createSubdirectory(dirName) }
+
+        getPackageDir()?.let { parentDir ->
+            execRunWriteAction {
+                dir = if (parentDir.canCreateSubdirectory(dirName)) {
+                    parentDir.createSubdirectory(dirName)
+                } else {
+                    notificationFactory.info("Directory $dirName is already exist.")
+                    parentDir.findSubdirectory(dirName)
+                }
+            }
+        }
         return dir
     }
 }

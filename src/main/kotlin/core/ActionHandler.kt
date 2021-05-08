@@ -15,6 +15,7 @@ import model.OpenInEditorFileType
 import openInEditor
 import services.NotificationsFactory
 import services.PackageHelper
+import utils.extensions.canCreateFile
 
 @Service
 class ActionHandler(
@@ -52,9 +53,17 @@ class ActionHandler(
 
                     execRunWriteAction {
                         generatedFiles.forEach { fileModel ->
-                            val addedPsiElement = generatedPackage?.add(fileModel.psiFile)
-                            if (fileModel.isOpenInEditor) {
-                                addedPsiElement?.openInEditor()
+                            generatedPackage?.let { dir ->
+                                if (dir.canCreateFile(fileModel.name)) {
+                                    val addedPsiElement = dir.add(fileModel.psiFile)
+                                    if (fileModel.isOpenInEditor) {
+                                        addedPsiElement?.openInEditor()
+                                    }
+                                } else {
+                                    notificationFactory.error(
+                                        "Failure to create template file ${fileModel.name}. A file with this name already exists."
+                                    )
+                                }
                             }
                         }
                     }

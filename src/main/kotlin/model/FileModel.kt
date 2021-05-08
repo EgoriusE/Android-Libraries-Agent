@@ -11,4 +11,6 @@ data class FileModel(
 data class GeneratedFileModel(
     val psiFile: PsiFile,
     val isOpenInEditor: Boolean = false
-)
+) {
+    val name = psiFile.name
+}

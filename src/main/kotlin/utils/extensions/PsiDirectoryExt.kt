@@ -5,7 +5,16 @@ import com.intellij.util.IncorrectOperationException
 
 fun PsiDirectory.canCreateSubdirectory(name: String): Boolean {
     return try {
-        this.checkCreateSubdirectory(name)
+        checkCreateSubdirectory(name)
+        true
+    } catch (ex: IncorrectOperationException) {
+        false
+    }
+}
+
+fun PsiDirectory.canCreateFile(fileName: String): Boolean {
+    return try {
+        checkCreateFile(fileName)
         true
     } catch (ex: IncorrectOperationException) {
         false
