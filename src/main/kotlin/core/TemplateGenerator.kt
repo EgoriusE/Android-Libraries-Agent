@@ -1,17 +1,21 @@
 package core
 
-import PluginConstants.DEFAULT_TEMPLATES_DIR_NAME
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
-import extensions.templateNameToFileName
+import constants.PluginConstants.DEFAULT_TEMPLATES_DIR_NAME
 import freemarker.template.Configuration
 import freemarker.template.Template
 import freemarker.template.TemplateExceptionHandler
+import model.FileModel
+import model.GeneratedFileModel
 import org.jetbrains.kotlin.idea.KotlinFileType
+import utils.extensions.templateNameToFileName
 import java.io.StringWriter
 
-class TemplateGenerator(private val project: Project) {
+class TemplateGenerator(
+    private val project: Project
+) {
 
     private val psiFileFactory by lazy {
         PsiFileFactory.getInstance(project)
@@ -27,28 +31,36 @@ class TemplateGenerator(private val project: Project) {
         }
     }
 
-    fun generateBoilerplate(templateNames: List<String>, model: Map<String, Any>): List<PsiFile> =
-        templateNames.map { templateName ->
-
-            val template: Template = try {
-                freeMarkerConfig.getTemplate(templateName)
-            } catch (ex: Exception) {
-                ex.printStackTrace()
-                throw IllegalArgumentException("Can't find template $templateName")
-            }
-
-            val text: String = StringWriter().use { writer ->
-                try {
-                    template.process(model, writer)
-                    writer.buffer.toString()
-                } catch (ex: Exception) {
-                    ex.printStackTrace()
-                    throw UnsupportedOperationException()
-                }
-            }
-            println(text)
-            val currPsiFile: PsiFile =
-                psiFileFactory.createFileFromText(templateName.templateNameToFileName(), KotlinFileType.INSTANCE, text)
-            currPsiFile
+    fun generateFiles(files: List<FileModel>): List<GeneratedFileModel> {
+        return files.map { fileModel ->
+            GeneratedFileModel(
+                psiFile = generateFile(fileModel),
+                isOpenInEditor = fileModel.isOpenInEditor
+            )
         }
+    }
+
+    fun generateFile(fileModel: FileModel): PsiFile {
+
+        val template: Template = try {
+            freeMarkerConfig.getTemplate(fileModel.name)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw IllegalArgumentException("Can't find template $fileModel")
+        }
+
+        val templateText = StringWriter().use { writer ->
+            try {
+                template.process(fileModel.templateModel, writer)
+                writer.buffer.toString()
+            } catch (e: Exception) {
+                e.printStackTrace()
+                throw UnsupportedOperationException()
+            }
+        }
+        return psiFileFactory.createFileFromText(
+            fileModel.name.templateNameToFileName(),
+            KotlinFileType.INSTANCE, templateText
+        )
+    }
 }

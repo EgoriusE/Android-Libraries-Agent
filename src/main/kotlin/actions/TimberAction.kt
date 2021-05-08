@@ -1,14 +1,17 @@
 package actions
 
 import com.intellij.openapi.actionSystem.AnActionEvent
-import constants.*
 import constants.CodeGeneratorConstants.IMPLEMENTATION_CONFIG_NAME
+import constants.TIMBER_D
+import constants.TIMBER_N_MSG
+import constants.TIMBER_VERSION
 import core.ActionHandler
 import model.DependencyModel
 import model.ModificationModel
 import model.ModificationStep
+import model.OpenInEditorFileType
 
-class KoinAction : BaseAction() {
+class TimberAction : BaseAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         super.actionPerformed(e)
@@ -19,29 +22,22 @@ class KoinAction : BaseAction() {
                     ModificationStep.GradleModificationStep.DependencyModification(
                         moduleDependencies = listOf(
                             DependencyModel(
-                                name = KOIN_D_SCOPE,
-                                version = KOIN_VERSION,
+                                name = TIMBER_D,
+                                version = TIMBER_VERSION,
                                 componentName = IMPLEMENTATION_CONFIG_NAME
                             ),
-                            DependencyModel(
-                                name = KOIN_D_CORE,
-                                version = KOIN_VERSION,
-                                componentName = IMPLEMENTATION_CONFIG_NAME
-                            ),
-                            DependencyModel(
-                                name = KOIN_D_VIEW_MODEL,
-                                version = KOIN_VERSION,
-                                componentName = IMPLEMENTATION_CONFIG_NAME
-                            )
-                        )
+                        ),
+                    ),
+                    ModificationStep.OpenInEditorFiles(
+                        fileTypes = listOf(OpenInEditorFileType.BUILD_GRADLE_APP)
                     ),
                     ModificationStep.NotificationStep(
-                        message = KOIN_N_MSG
-                    ),
-                    ModificationStep.OpenInEditorFiles()
+                        message = TIMBER_N_MSG
+                    )
                 ),
                 module = module!!
             )
+
             ActionHandler.getInstance(project!!).handle(dataModel)
         }
     }

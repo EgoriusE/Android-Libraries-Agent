@@ -2,60 +2,131 @@ package core
 
 import com.android.tools.idea.gradle.dsl.api.GradleBuildModel
 import com.android.tools.idea.gradle.dsl.api.GradleModelProvider
+import com.android.tools.idea.projectsystem.ProjectSystemSyncManager
+import com.android.tools.idea.projectsystem.gradle.GradleProjectSystemSyncManager
+import com.intellij.openapi.components.Service
+import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
-import com.intellij.psi.PsiFile
-import com.intellij.psi.PsiRecursiveElementVisitor
-import com.intellij.psi.PsiRecursiveElementWalkingVisitor
+import constants.CodeGeneratorConstants.BUILD_GRADLE_FILE_NAME
+import execRunWriteAction
 import model.ModificationModel
 import model.ModificationStep
-import org.jetbrains.kotlin.idea.KotlinFileType
+import model.OpenInEditorFileType
+import openInEditor
+import services.NotificationsFactory
+import services.PackageHelper
 
-class ActionHandler(private val project: Project) {
+@Service
+class ActionHandler(
+    private val project: Project
+) {
+    private val projectGradleBuildModel: GradleBuildModel? = GradleModelProvider.get().getBuildModel(project)
+    private val gradleDependenciesManager = GradleDependenciesManager()
+    private val notificationFactory by lazy { NotificationsFactory.getInstance(project) }
+    private val gradleProjectSystemSyncManager = GradleProjectSystemSyncManager(project)
+
+    companion object {
+        fun getInstance(project: Project): ActionHandler = project.service()
+    }
 
     fun handle(model: ModificationModel) {
+        val packageHelper = PackageHelper(model.module)
+
         model.steps.forEach { step ->
             when (step) {
-                is ModificationStep.DependenciesStep -> {
-                    val buildModel: GradleBuildModel? = GradleModelProvider.get().getBuildModel(model.module)
-                    if (buildModel != null) {
-                        RoomGradleModifier().addDependencies(buildModel, step.dependencies)
-                    }
+
+                is ModificationStep.GradleModificationStep -> {
+                    processGradleModificationStep(step, model)
                 }
-                is ModificationStep.BoilerPlateStep -> {
-                    val dirHelper = DirHelper(model.module)
-                    val boilerPlateDir = if (step.dirName != null) {
-                        dirHelper.createBoilerplateDir(step.dirName)
-                    } else dirHelper.getPackageDir()
+
+                is ModificationStep.GenerateCodeStep -> {
+                    val generatedPackage =
+                        if (step.dirName != null) {
+                            packageHelper.generatePackage(step.dirName)
+                        } else {
+                            packageHelper.getPackageDir()
+                        }
 
                     val templateGenerator = TemplateGenerator(project)
-                    val generatedFiles = templateGenerator.generateBoilerplate(step.filesNames, step.model)
-                    FileAdder(project).addFiles(generatedFiles, boilerPlateDir)
-                }
-                is ModificationStep.ExistingFiles -> {
-                    val dirHelper = DirHelper(model.module)
-                    val packageDir = dirHelper.getPackageDir()
-                    val files: Array<PsiFile>? = packageDir?.files
-                    files?.forEach {
-                        if (it.fileType is KotlinFileType) {
-                            println("is kotlin File Type")
-                            parseKtPsiFile(it)
+                    val generatedFiles = templateGenerator.generateFiles(step.files)
+
+                    execRunWriteAction {
+                        generatedFiles.forEach { fileModel ->
+                            val addedPsiElement = generatedPackage?.add(fileModel.psiFile)
+                            if (fileModel.isOpenInEditor) {
+                                addedPsiElement?.openInEditor()
+                            }
                         }
-                        println(it.fileType.name)
-                        println(it.fileType.description)
-                        println(it.fileType.displayName)
-                        println(it.fileType.defaultExtension)
-                        println("----------")
                     }
+                }
+
+//                is ModificationStep.ExistingFiles -> {
+//                    SrcModifier(project).modify(model)
+//                }
+
+                is ModificationStep.NotificationStep -> {
+                    notificationFactory.info(step.message)
+                }
+
+                is ModificationStep.OpenInEditorFiles -> {
+                    step.fileTypes.forEach { type ->
+                        when (type) {
+                            OpenInEditorFileType.BUILD_GRADLE_APP -> {
+                                val moduleDir = packageHelper.getModulePackage()
+                                val buildFile = moduleDir?.findFile(BUILD_GRADLE_FILE_NAME)
+                                buildFile?.openInEditor()
+                            }
+                            OpenInEditorFileType.BUILD_GRADLE_PROJECT -> {
+                                val rootDir = packageHelper.rootDir
+                                val buildFile = rootDir?.findFile(BUILD_GRADLE_FILE_NAME)
+                                buildFile?.openInEditor()
+                            }
+                            else -> {
+                            } // TODO (not implemented yet)
+                        }
+                    }
+                }
+
+                is ModificationStep.CopyJsonToProjectStep -> {
+                    FirebaseHelper.execute(model.module)
                 }
             }
         }
+
+        gradleProjectSystemSyncManager.syncProject(ProjectSystemSyncManager.SyncReason.PROJECT_MODIFIED)
     }
 
-    private fun parseKtPsiFile(file: PsiFile) {
-        val viewProvider = file.viewProvider
+    private fun processGradleModificationStep(
+        step: ModificationStep.GradleModificationStep,
+        model: ModificationModel
+    ) {
 
-        val emptyVisitor = PsiRecursiveElementVisitor.EMPTY_VISITOR
-        file.accept(emptyVisitor)
-        emptyVisitor.visitFile(file)
+        val buildModuleModel: GradleBuildModel? = GradleModelProvider.get().getBuildModel(model.module)
+
+        when (step) {
+            is ModificationStep.GradleModificationStep.DependencyModification -> {
+
+                if (buildModuleModel != null && step.moduleDependencies.isNotEmpty()) {
+                    gradleDependenciesManager.addDependencies(
+                        buildModel = buildModuleModel,
+                        dependencies = step.moduleDependencies
+                    )
+                }
+
+                if (projectGradleBuildModel != null && step.projectDependencies.isNotEmpty()) {
+                    gradleDependenciesManager.addDependencies(
+                        buildModel = projectGradleBuildModel.buildscript(),
+                        dependencies = step.projectDependencies
+                    )
+                    execRunWriteAction { projectGradleBuildModel.applyChanges() }
+                }
+            }
+            is ModificationStep.GradleModificationStep.PluginModification -> {
+                if (buildModuleModel != null && step.modulePlugins.isNotEmpty()) {
+                    gradleDependenciesManager.addPlugins(buildModuleModel, step.modulePlugins)
+                }
+            }
+
+        }
     }
 }

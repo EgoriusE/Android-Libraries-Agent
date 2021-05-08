@@ -5,6 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class TemplateEntity(
-@PrimaryKey
-val id: Long
+    @PrimaryKey
+    val id: Long
 )

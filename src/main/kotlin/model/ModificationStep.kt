@@ -1,13 +1,39 @@
 package model
 
-sealed class ModificationStep {
-    class DependenciesStep(val dependencies: List<String>) : ModificationStep()
-    class BoilerPlateStep(val filesNames: List<String>, val model: Map<String, Any>, val dirName: String?) :
-        ModificationStep()
 
-    class ExistingFiles() : ModificationStep()
+sealed class ModificationStep {
+
+    sealed class GradleModificationStep : ModificationStep() {
+
+        class DependencyModification(
+            val moduleDependencies: List<DependencyModel> = emptyList(),
+            val projectDependencies: List<DependencyModel> = emptyList(),
+        ) : GradleModificationStep()
+
+        class PluginModification(
+            val modulePlugins: List<String> = emptyList(),
+            val projectPlugins: List<String> = emptyList(),
+        ) : GradleModificationStep()
+
+    }
+
+    class GenerateCodeStep(
+        val files: List<FileModel>,
+        val dirName: String?
+    ) : ModificationStep()
+
+    // TODO (not yet not yet) something meaningful will be here
+    class ExistingFiles : ModificationStep()
+
+    class NotificationStep(val message: String) : ModificationStep()
+
+    class OpenInEditorFiles(
+        val fileTypes: List<OpenInEditorFileType> = listOf(OpenInEditorFileType.BUILD_GRADLE_APP)
+    ) : ModificationStep()
+
+    object CopyJsonToProjectStep : ModificationStep()
 }
 
-enum class TypeClassToModification {
-    APP, MANIFEST
+enum class OpenInEditorFileType {
+    BUILD_GRADLE_APP, BUILD_GRADLE_PROJECT, MANIFEST
 }
