@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'com.bobrusik.plugin.android_libraries_agent'
-version '1.0-SNAPSHOT'
+version '1.0.0-alpha2'
 
 repositories {
     mavenCentral()
@@ -25,4 +25,10 @@ compileKotlin {
 intellij {
     version '2020.2.3'
     plugins = ['android', 'Kotlin', 'java']
+}
+
+patchPluginXml {
+    version = project.version
+    sinceBuild = '194'
+    untilBuild = '203.*'
 }

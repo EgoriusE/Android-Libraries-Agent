@@ -6,16 +6,20 @@
     <description><![CDATA[
        <b>Adding popular android libraries in one click.</b>
         ]]></description>
-    <version>1.0.0-alpha1</version>
+    <version>1.0.0-alpha2</version>
 
     <change-notes><![CDATA[
     1.0.0-alpha1 -- First version of plugin. Supports 8 most popular libraries for Android.<br/>
+    1.0.0-alpha2 -- Hot fix of compatibility range version and compatibility verification warning<br/>
     ]]></change-notes>
+
+    <idea-version since-build="194"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>org.intellij.groovy</depends>
     <depends>org.jetbrains.android</depends>
     <depends>org.jetbrains.kotlin</depends>
+    <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
     </extensions>
