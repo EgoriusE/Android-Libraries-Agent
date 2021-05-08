@@ -38,7 +38,7 @@ class KoinAction : BaseAction() {
                     ModificationStep.NotificationStep(
                         message = KOIN_N_MSG
                     ),
-                    ModificationStep.ExistingFiles()
+                    ModificationStep.OpenInEditorFiles()
                 ),
                 module = module!!
             )

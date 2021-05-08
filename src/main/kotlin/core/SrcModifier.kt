@@ -36,12 +36,8 @@ class SrcModifier(private val project: Project) {
         val files: Array<PsiFile>? = packageDir?.files
         files?.forEach {
             if (it.fileType is KotlinFileType) {
-                println("is kotlin File Type")
                 parseKtPsiFile(it)
             }
-            println(it.fileType.name)
-            println(it.fileType.description)
-            println("----------")
         }
     }
 
@@ -92,7 +88,6 @@ class SrcModifier(private val project: Project) {
         val ktPsiImport1: KtImportDirective = ktPsiFactory.createImportDirective(ImportPath.fromString(import1))
         val ktPsiImport2: KtImportDirective = ktPsiFactory.createImportDirective(ImportPath.fromString(import2))
         val a = uastFile.imports.first().sourcePsi
-        println("IMPORT SUKA $a ")
         executeCommand {
             runWriteAction {
                 val addedImport = file.addBefore(ktPsiImport1, a)

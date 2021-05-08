@@ -1,91 +1,92 @@
 <idea-plugin>
-    <id>Android Project Generator Protype</id>
-    <name>Android Project Generator</name>
-    <vendor>
+    <id>com.bobrusik.plugin.android_libraries_agent</id>
+    <name>Android Libraries Agent</name>
+    <vendor email="egblg@yandex.ru"/>
 
-    </vendor>
-    <!--    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>-->
+    <description><![CDATA[
+       <b>Adding popular android libraries in one click.</b>
+        ]]></description>
+    <version>1.0.0-alpha1</version>
 
-    <!--    <description><![CDATA[-->
-    <!--    Enter short description for your plugin here.<br>-->
-    <!--    <em>most HTML tags may be used</em>-->
-    <!--    ]]></description>-->
+    <change-notes><![CDATA[
+    1.0.0-alpha1 -- First version of plugin. Supports 8 most popular libraries for Android.<br/>
+    ]]></change-notes>
 
-    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-         on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.intellij.groovy</depends>
     <depends>org.jetbrains.android</depends>
     <depends>org.jetbrains.kotlin</depends>
-
 
     <extensions defaultExtensionNs="com.intellij">
     </extensions>
 
     <actions>
-        <!-- Add your actions here -->
+
+        <!-- Actions -->
         <group id="org.intellij.sdk.action.GroupedActions" text="Android Project Generator" popup="true">
             <add-to-group group-id="NewGroup" anchor="last"/>
 
-            <action id="GeneratorIdeaQuickList"
-                    class="actions.QuickListAction" text="Generator List Popup..."
+            <action id="com.bobrusik.plugin.android_libraries_agent.GeneratorIdeaQuickList"
+                    class="actions.QuickListAction" text="Android Libraries Agent List Popup..."
                     description="Bla bla bla ">
                 <keyboard-shortcut keymap="Mac OS X" first-keystroke="shift ctrl A"/>
                 <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift ctrl A"/>
                 <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt A"/>
             </action>
 
-            <separator text="Network"/>
+            <separator/>
 
-            <action id="RetrofitAction"
-                    class="actions.RetrofitAction" text="Add Retrofit"
-                    description="Add Retrofit dependencies and some boilerplate code.">
+            <action id="com.bobrusik.plugin.android_libraries_agent.RetrofitAction"
+                    class="actions.RetrofitAction" text="Retrofit"
+                    description="Adds Retrofit library and boilerplate code for it">
             </action>
 
-            <action id="HttpLoggingInterceptorAction"
-                    class="actions.HttpLoggingInterceptorAction" text="Add Okhttp Logging Interceptor"
-                    description="Add Okhttp Logging Interceptor dependency and some boilerplate code.">
+            <action id="com.bobrusik.plugin.android_libraries_agent.HttpLoggingInterceptorAction"
+                    class="actions.HttpLoggingInterceptorAction" text="Okhttp Logging Interceptor"
+                    description="Adds Okhttp Logging Interceptor library and boilerplate code for it">
             </action>
 
-            <separator text="Data"/>
+            <separator/>
 
             <action
-                    id="RoomAction"
-                    class="actions.RoomAction" text="Add Room"
-                    description="Add room dependencies and some boilerplate code.">
+                    id="com.bobrusik.plugin.android_libraries_agent.RoomAction"
+                    class="actions.RoomAction" text="Room"
+                    description="Adds Room library and boilerplate code for it">
             </action>
 
-            <separator text="Di"/>
+            <separator/>
 
-            <action id="KoinAction"
-                    class="actions.KoinAction" text="Add Koin"
-                    description="Add koin dependencies and some boilerplate code.">
+            <action id="com.bobrusik.plugin.android_libraries_agent.KoinAction"
+                    class="actions.KoinAction" text="Koin"
+                    description="Adds Koin library and boilerplate code for it">
             </action>
 
-            <action id="HiltAction"
-                    class="actions.HiltAction" text="Add Hilt"
-                    description="Add Hilt dependencies and some boilerplate code.">
+            <action id="com.bobrusik.plugin.android_libraries_agent.HiltAction"
+                    class="actions.HiltAction" text="Hilt"
+                    description="Adds Hilt library and boilerplate code for it">
             </action>
 
-            <action id="DaggerAction"
-                    class="actions.DaggerAction" text="Add Dagger"
-                    description="Add Dagger dependencies and some boilerplate code.">
+            <action id="com.bobrusik.plugin.android_libraries_agent.DaggerAction"
+                    class="actions.DaggerAction" text="Dagger"
+                    description="Adds Dagger library and boilerplate code for it">
             </action>
 
-            <separator text="Other"/>
+            <separator/>
 
-            <action id="TimberAction"
-                    class="actions.TimberAction" text="Add Timber"
-                    description="Add Timber dependencies and some boilerplate code.">
+            <action id="com.bobrusik.plugin.android_libraries_agent.TimberAction"
+                    class="actions.TimberAction" text="Timber"
+                    description="Adds Timber library and boilerplate code for it">
             </action>
 
-            <action id="FirebaseAction"
-                    class="actions.FirebaseAction" text="Add Firebase"
-                    description="Add Firebase and some boilerplate code.">
+            <action id="com.bobrusik.plugin.android_libraries_agent.FirebaseAction"
+                    class="actions.FirebaseAction" text="Firebase"
+                    description="Adds Firebase and boilerplate code for it">
             </action>
 
         </group>
     </actions>
 
+    <!-- Extensions -->
     <extensions defaultExtensionNs="com.intellij">
         <projectService serviceImplementation="services.NotificationsFactory"/>
         <projectService serviceImplementation="core.ActionHandler"/>

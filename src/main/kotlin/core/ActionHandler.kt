@@ -60,9 +60,9 @@ class ActionHandler(
                     }
                 }
 
-                is ModificationStep.ExistingFiles -> {
-                    SrcModifier(project).modify(model)
-                }
+//                is ModificationStep.ExistingFiles -> {
+//                    SrcModifier(project).modify(model)
+//                }
 
                 is ModificationStep.NotificationStep -> {
                     notificationFactory.info(step.message)

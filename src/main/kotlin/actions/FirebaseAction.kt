@@ -40,7 +40,7 @@ class FirebaseAction : BaseAction() {
                     ModificationStep.CopyJsonToProjectStep,
                     ModificationStep.OpenInEditorFiles(listOf(OpenInEditorFileType.BUILD_GRADLE_APP)),
                     ModificationStep.NotificationStep(
-                        message = DAGGER_N_MSG
+                        message = FIREBASE_N_MSG
                     )
                 ),
                 module = module!!

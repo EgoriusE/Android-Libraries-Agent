@@ -9,6 +9,7 @@ import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
 
 class QuickListAction : QuickSwitchSchemeAction(), DumbAware {
+
     override fun fillActions(project: Project?, group: DefaultActionGroup, dataContext: DataContext) {
 
         if (project == null) {

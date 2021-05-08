@@ -37,6 +37,9 @@ class DaggerAction : BaseAction() {
                             )
                         )
                     ),
+                    ModificationStep.GradleModificationStep.PluginModification(
+                        modulePlugins = listOf(DAGGER_P_KAPT)
+                    ),
                     ModificationStep.GenerateCodeStep(
                         files = listOf(
                             FileModel(DAGGER_T_COMPONENT, templateModel, true),

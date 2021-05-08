@@ -4,7 +4,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.4.10'
 }
 
-group 'com.egorius.android.projectgenerator'
+group 'com.bobrusik.plugin.android_libraries_agent'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -25,9 +25,4 @@ compileKotlin {
 intellij {
     version '2020.2.3'
     plugins = ['android', 'Kotlin', 'java']
-}
-patchPluginXml {
-    changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
 }

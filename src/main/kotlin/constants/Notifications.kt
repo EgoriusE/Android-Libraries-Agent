@@ -2,32 +2,32 @@ package constants
 
 // Room
 
-const val ROOM_N_MSG = "Surprise! Room lib added!"
+const val ROOM_N_MSG = "Room successfully added!"
 
 // Koin
 
-const val KOIN_N_MSG = "Surprise! Koin lib added!"
+const val KOIN_N_MSG = "Koin successfully added!"
 
 // Hilt
 
-const val HILT_N_MSG = "Surprise! Hilt lib added!"
+const val HILT_N_MSG = "Hilt successfully added!"
 
 // Retrofit
 
-const val RETROFIT_N_MSG = "Bang bang bang Retrofit inda house!"
+const val RETROFIT_N_MSG = "Retrofit successfully added!!"
 
 // Timber
 
-const val TIMBER_N_MSG = "Surprise! Timber lib added!"
+const val TIMBER_N_MSG = "Timber successfully added!"
 
 // Dagger
 
-const val DAGGER_N_MSG = "Surprise! Dagger lib added!"
+const val DAGGER_N_MSG = "Dagger successfully added!"
 
 // Okhttp logging interceptor
 
-const val LOG_INTERCEPTOR_N_MSG = "Surprise! http logging interceptor lib added!"
+const val LOG_INTERCEPTOR_N_MSG = "Http logging interceptor successfully added!"
 
 // Firebase
 
-const val FIREBASE_N_MSG = "Surprise! Firebase lib added!"
+const val FIREBASE_N_MSG = "Firebase successfully added!"
