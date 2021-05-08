@@ -35,3 +35,7 @@ const val FIREBASE_N_MSG = "Firebase successfully added!"
 // Datastore
 
 const val DATASTORE_N_MSG = "Datastore successfully added!"
+
+// Crashlytics
+
+const val CRASHLYTICS_N_MSG = "Crashlytics and Firebase successfully added!"

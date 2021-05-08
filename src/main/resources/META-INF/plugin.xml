@@ -93,6 +93,11 @@
                     description="Adds Firebase and boilerplate code for it">
             </action>
 
+            <action id="com.bobrusik.plugin.android_libraries_agent.CrashlyticsAction"
+                    class="actions.CrashlyticsAction" text="Crashlytics"
+                    description="Adds Crashlytics and boilerplate code for it">
+            </action>
+
         </group>
     </actions>
 

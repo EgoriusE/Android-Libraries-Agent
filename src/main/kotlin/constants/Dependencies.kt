@@ -58,3 +58,13 @@ const val DATASTORE_VERSION = "1.0.0-beta01"
 const val DATASTORE_D_PROJECT = "androidx.datastore:datastore-preferences:"
 const val DATASTORE_D_RX_JAVA2 = "androidx.datastore:datastore-preferences-rxjava2:"
 const val DATASTORE_D_RX_JAVA3 = "androidx.datastore:datastore-preferences-rxjava3:"
+
+// Crashlytics
+
+const val CRASHLYTICS_VERSION_PROJECT = "2.5.2"
+const val CRASHLYTICS_VERSION_MODULE_1 = "17.4.1"
+const val CRASHLYTICS_VERSION__MODULE_2 = "18.0.3"
+const val CRASHLYTICS_D_PROJECT = "com.google.firebase:firebase-crashlytics-gradle:"
+const val CRASHLYTICS_P_MODULE = "com.google.firebase.crashlytics"
+const val CRASHLYTICS_D_MODULE = "com.google.firebase:firebase-crashlytics:"
+const val CRASHLYTICS_D_MODULE_2 = "com.google.firebase:firebase-analytics:"
