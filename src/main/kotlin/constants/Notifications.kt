@@ -39,3 +39,15 @@ const val DATASTORE_N_MSG = "Datastore successfully added!"
 // Crashlytics
 
 const val CRASHLYTICS_N_MSG = "Crashlytics and Firebase successfully added!"
+
+// Gson
+
+const val GSON_N_MSG = "Gson successfully added!"
+
+// Glide
+
+const val GLIDE_N_MSG = "Glide successfully added!"
+
+// RxJava
+
+const val RXJAVA_N_MSG = "RxJava3 successfully added!"

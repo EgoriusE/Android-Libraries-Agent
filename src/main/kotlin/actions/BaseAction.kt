@@ -13,6 +13,7 @@ abstract class BaseAction : AnAction() {
 
     override fun update(e: AnActionEvent) {
         e.presentation.isEnabled = e.androidFacet != null
+
     }
 
     override fun actionPerformed(e: AnActionEvent) {

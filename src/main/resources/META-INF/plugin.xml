@@ -40,6 +40,8 @@
 
 <!--            <separator/>-->
 
+            <!--    Network Section    -->
+
             <action id="com.bobrusik.plugin.android_libraries_agent.RetrofitAction"
                     class="actions.RetrofitAction" text="Retrofit"
                     description="Adds Retrofit library and boilerplate code for it">
@@ -50,7 +52,14 @@
                     description="Adds Okhttp Logging Interceptor library and boilerplate code for it">
             </action>
 
+            <action id="com.bobrusik.plugin.android_libraries_agent.GsonAction"
+                    class="actions.GsonAction" text="Gson"
+                    description="Adds GsonAction and code examples for it">
+            </action>
+
             <separator/>
+
+            <!--    Data Section    -->
 
             <action
                     id="com.bobrusik.plugin.android_libraries_agent.RoomAction"
@@ -65,6 +74,8 @@
             </action>
 
             <separator/>
+
+            <!--    DI Section    -->
 
             <action id="com.bobrusik.plugin.android_libraries_agent.KoinAction"
                     class="actions.KoinAction" text="Koin"
@@ -83,6 +94,8 @@
 
             <separator/>
 
+            <!--    Other Section    -->
+
             <action id="com.bobrusik.plugin.android_libraries_agent.TimberAction"
                     class="actions.TimberAction" text="Timber"
                     description="Adds Timber library and boilerplate code for it">
@@ -96,6 +109,11 @@
             <action id="com.bobrusik.plugin.android_libraries_agent.CrashlyticsAction"
                     class="actions.CrashlyticsAction" text="Crashlytics"
                     description="Adds Crashlytics and boilerplate code for it">
+            </action>
+
+            <action id="com.bobrusik.plugin.android_libraries_agent.GlideAction"
+                    class="actions.GlideAction" text="Glide"
+                    description="Adds Glide library and example code for it">
             </action>
 
         </group>

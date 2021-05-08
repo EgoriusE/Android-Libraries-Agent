@@ -68,3 +68,22 @@ const val CRASHLYTICS_D_PROJECT = "com.google.firebase:firebase-crashlytics-grad
 const val CRASHLYTICS_P_MODULE = "com.google.firebase.crashlytics"
 const val CRASHLYTICS_D_MODULE = "com.google.firebase:firebase-crashlytics:"
 const val CRASHLYTICS_D_MODULE_2 = "com.google.firebase:firebase-analytics:"
+
+// Gson
+
+const val GSON_VERSION = "2.8.6"
+const val GSON_VERSION_2 = "2.9.0"
+const val GSON_D = "com.google.code.gson:gson:"
+const val GSON_D_2 = "com.squareup.retrofit2:converter-gson:"
+
+// Glide
+
+const val GLIDE_VERSION = "4.12.0"
+const val GLIDE_D = "com.github.bumptech.glide:glide:"
+const val GLIDE_D_COMPILER = "com.github.bumptech.glide:compiler:"
+
+// RxJava
+
+const val RXJAVA_VERSION = "3.0.0"
+const val RXJAVA_D_1 = "io.reactivex.rxjava3:rxandroid:"
+const val RXJAVA_D_2 = "io.reactivex.rxjava3:rxjava:"
