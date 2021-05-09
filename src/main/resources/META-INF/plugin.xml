@@ -4,13 +4,13 @@
     <vendor email="egblg@yandex.ru"/>
 
     <description><![CDATA[
-       <b>Adding popular android libraries in one click.</b>
+       <b>Adding popular android libraries in one click.</b><br/>
         ]]></description>
     <version>1.0.0-alpha2</version>
 
     <change-notes><![CDATA[
     1.0.0-alpha1 -- First version of plugin. Supports 8 most popular libraries for Android.<br/>
-    1.0.0-alpha2 -- Hot fix of compatibility range version and compatibility verification warning<br/>
+    1.0.0-alpha3 -- Add some new libraries. Added quick access to the list with adding libraries via a shortcut. Shortcut is Shift + Ctrl + L.<br/>
     ]]></change-notes>
 
     <idea-version since-build="194"/>
