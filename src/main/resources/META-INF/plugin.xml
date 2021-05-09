@@ -116,9 +116,9 @@
             <action id="com.bobrusik.plugin.android_libraries_agent.GeneratorIdeaQuickList"
                     class="actions.QuickListAction" text="Android Libraries Agent List Popup..."
                     description="List with quick access to other actions">
-                <keyboard-shortcut keymap="Mac OS X" first-keystroke="shift ctrl A"/>
-                <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift ctrl A"/>
-                <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt A"/>
+                <keyboard-shortcut keymap="Mac OS X" first-keystroke="shift ctrl L"/>
+                <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift ctrl L"/>
+                <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt L"/>
             </action>
         </group>
 

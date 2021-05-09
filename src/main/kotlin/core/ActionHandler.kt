@@ -13,6 +13,7 @@ import model.ModificationModel
 import model.ModificationStep
 import model.OpenInEditorFileType
 import openInEditor
+import services.FirebaseHelper
 import services.NotificationsFactory
 import services.PackageHelper
 import utils.extensions.canCreateFile

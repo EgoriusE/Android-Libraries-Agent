@@ -1,4 +1,4 @@
-package core
+package services
 
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.vfs.VfsUtil
