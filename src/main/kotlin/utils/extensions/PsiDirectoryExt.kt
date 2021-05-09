@@ -39,3 +39,7 @@ fun PsiDirectory.createSubdirectoriesForPackageName(packageName: String): PsiDir
     }
     return result
 }
+
+fun PsiDirectory.hasChildDir(childDirName: String): Boolean {
+    return findSubdirectory(childDirName) != null
+}

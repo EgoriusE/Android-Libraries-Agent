@@ -7,27 +7,37 @@ import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.actionSystem.DefaultActionGroup
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
+import constants.PluginConstants
+import hasAndroidProject
 
 class QuickListAction : QuickSwitchSchemeAction(), DumbAware {
 
     override fun fillActions(project: Project?, group: DefaultActionGroup, dataContext: DataContext) {
 
-        if (project == null) {
-            return
-        }
-        addAction("RoomAction", group)
-        addAction("KoinAction", group)
-        addAction("HiltAction", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.RetrofitAction", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.HttpLoggingInterceptorAction", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.GsonAction", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.RoomAction", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.DataStore", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.KoinAction", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.HiltAction", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.DaggerAction", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.TimberAction", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.RxJavaAction", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.FirebaseAction", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.CrashlyticsAction", group)
+        addAction("com.bobrusik.plugin.android_libraries_agent.GlideAction", group)
     }
 
-
     private fun addAction(actionId: String, toGroup: DefaultActionGroup) {
-        // add action to group if it is available
         ActionManager.getInstance().getAction(actionId)?.let {
             toGroup.add(it)
         }
     }
 
-    override fun isEnabled() = true
-    override fun getPopupTitle(e: AnActionEvent) = "Generatorrrrrr"
+    override fun update(e: AnActionEvent) {
+        e.presentation.isEnabled = e.hasAndroidProject()
+    }
+
+    override fun getPopupTitle(e: AnActionEvent) = PluginConstants.PLUGIN_NAME
 }

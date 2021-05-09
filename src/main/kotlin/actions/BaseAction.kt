@@ -5,6 +5,8 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.project.Project
+import hasAndroidProject
+import utils.extensions.getAppAndroidModuleOrNull
 
 abstract class BaseAction : AnAction() {
 
@@ -12,12 +14,15 @@ abstract class BaseAction : AnAction() {
     protected var project: Project? = null
 
     override fun update(e: AnActionEvent) {
-        e.presentation.isEnabled = e.androidFacet != null
-
+        e.presentation.isEnabled = e.hasAndroidProject()
     }
 
     override fun actionPerformed(e: AnActionEvent) {
-        module = e.androidFacet?.module
         project = e.project
+        module = e
+            .androidFacet
+            ?.module
+            ?: e.project
+                ?.getAppAndroidModuleOrNull()
     }
 }

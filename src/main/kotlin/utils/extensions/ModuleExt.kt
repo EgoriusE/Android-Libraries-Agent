@@ -24,9 +24,17 @@ fun Module.getPackageDir(): PsiDirectory? {
 
 fun Module.getSrcPackage(): PsiDirectory? {
     val moduleDir = getModulePackage()
-    return moduleDir?.findSubdirectory(CodeGeneratorConstants.SRC_FOLDER_NAME)
+    val resDir = moduleDir
+        ?.findSubdirectory(CodeGeneratorConstants.SRC_FOLDER_NAME)
         ?.findSubdirectory(CodeGeneratorConstants.MAIN_SOURCE_SET_FOLDER_NAME)
-        ?.findSubdirectory(CodeGeneratorConstants.JAVA_SOURCE_FOLDER_NAME)
+
+    return resDir?.let {
+        if (resDir.hasChildDir(CodeGeneratorConstants.JAVA_SOURCE_FOLDER_NAME)) {
+            resDir.findSubdirectory(CodeGeneratorConstants.JAVA_SOURCE_FOLDER_NAME)
+        } else {
+            resDir.findSubdirectory(CodeGeneratorConstants.KOTLIN_SOURCE_FOLDER_NAME)
+        }
+    }
 }
 
 fun Module.getModulePackage(): PsiDirectory? {
