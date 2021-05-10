@@ -48,6 +48,8 @@ class GradleDependenciesManager {
                 buildModel.applyPlugin(pluginName)
             }
         }
+
         buildModel.applyChanges()
     }
 }
+

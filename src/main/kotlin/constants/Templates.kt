@@ -26,3 +26,22 @@ const val DAGGER_F_NAME = "di"
 
 const val LOG_INTERCEPTOR_T = "logging_interceptor.kt.ftl"
 const val LOG_INTERCEPTOR_F_NAME = "interceptor"
+
+// Datastore
+
+const val DATASTORE_F_NAME = "data"
+const val DATASTORE_T_EXAMPLE = "datastore_example.kt.ftl"
+
+// Gson
+
+const val GSON_F_NAME = "examples"
+const val GSON_T_EXAMPLE = "gson_example.kt.ftl"
+
+// Glide
+
+const val GLIDE_F_NAME = "examples"
+const val GLIDE_T_EXAMPLE = "glide_example.kt.ftl"
+
+// RxJava
+
+const val RXJAVA_F_NAME = "examples"

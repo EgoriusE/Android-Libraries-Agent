@@ -9,7 +9,7 @@ const val BASE_URL = "http://api.example.com/"
 
 val retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
-// TODO: Add converter factory here
+// TODO: Add converter factory here. For example you can add GsonConverterFactory via Android Library Agent
 //  .addConverterFactory()
     .build()
 

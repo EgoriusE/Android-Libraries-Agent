@@ -4,13 +4,39 @@
     <vendor email="egblg@yandex.ru"/>
 
     <description><![CDATA[
-       <b>Adding popular android libraries in one click.</b>
+    <h2>Adding popular android libraries in one click.</h2>
+<p>You can add your favorite Android library in one click. The plugin will add dependency and in most cases will add boilerplate or example code.</p>
+<p>Usage:</p>
+<ol>
+<li>Right click on the module name in the Project View</li>
+<li>In the dropdown menu click New...</li>
+<li>At the end of list click Android Library Agent</li>
+<li>Choose library to add</li>
+</ol>
+<p>Or you can choose library in the quick list popup via keyboard shortcut: <b>Ctrl + Shift + L</b>.</p>
+<p>Supported libraries:</p>
+<ul>
+<li>Retrofit</li>
+<li>Okhttp Logging Interceptor</li>
+<li>Gson</li>
+<li>Room</li>
+<li>DataStore</li>
+<li>Koin</li>
+<li>Hilt</li>
+<li>Dagger</li>
+<li>Timber</li>
+<li>RxJava</li>
+<li>Firebase</li>
+<li>Crashlytics</li>
+<li>Glide</li>
+<li>More libraries coming soon...</li>
+</ul>
         ]]></description>
     <version>1.0.0-alpha2</version>
 
     <change-notes><![CDATA[
     1.0.0-alpha1 -- First version of plugin. Supports 8 most popular libraries for Android.<br/>
-    1.0.0-alpha2 -- Hot fix of compatibility range version and compatibility verification warning<br/>
+    1.0.0-alpha3 -- Add some new libraries. Added quick access to the list with adding libraries via a shortcut. Shortcut is Shift + Ctrl + L.<br/>
     ]]></change-notes>
 
     <idea-version since-build="194"/>
@@ -30,15 +56,7 @@
         <group id="org.intellij.sdk.action.GroupedActions" text="Android Libraries Agent" popup="true">
             <add-to-group group-id="NewGroup" anchor="last"/>
 
-<!--            <action id="com.bobrusik.plugin.android_libraries_agent.GeneratorIdeaQuickList"-->
-<!--                    class="actions.QuickListAction" text="Android Libraries Agent List Popup..."-->
-<!--                    description="Bla bla bla ">-->
-<!--                <keyboard-shortcut keymap="Mac OS X" first-keystroke="shift ctrl A"/>-->
-<!--                <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift ctrl A"/>-->
-<!--                <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt A"/>-->
-<!--            </action>-->
-
-<!--            <separator/>-->
+            <!--    Network Section    -->
 
             <action id="com.bobrusik.plugin.android_libraries_agent.RetrofitAction"
                     class="actions.RetrofitAction" text="Retrofit"
@@ -50,7 +68,14 @@
                     description="Adds Okhttp Logging Interceptor library and boilerplate code for it">
             </action>
 
+            <action id="com.bobrusik.plugin.android_libraries_agent.GsonAction"
+                    class="actions.GsonAction" text="Gson"
+                    description="Adds GsonAction and code examples for it">
+            </action>
+
             <separator/>
+
+            <!--    Data Section    -->
 
             <action
                     id="com.bobrusik.plugin.android_libraries_agent.RoomAction"
@@ -58,7 +83,15 @@
                     description="Adds Room library and boilerplate code for it">
             </action>
 
+            <action
+                    id="com.bobrusik.plugin.android_libraries_agent.DatastoreAction"
+                    class="actions.DatastoreAction" text="DataStore"
+                    description="Adds Datastore library and boilerplate code for it">
+            </action>
+
             <separator/>
+
+            <!--    DI Section    -->
 
             <action id="com.bobrusik.plugin.android_libraries_agent.KoinAction"
                     class="actions.KoinAction" text="Koin"
@@ -77,9 +110,16 @@
 
             <separator/>
 
+            <!--    Other Section    -->
+
             <action id="com.bobrusik.plugin.android_libraries_agent.TimberAction"
                     class="actions.TimberAction" text="Timber"
                     description="Adds Timber library and boilerplate code for it">
+            </action>
+
+            <action id="com.bobrusik.plugin.android_libraries_agent.RxJavaAction"
+                    class="actions.RxJavaAction" text="RxJava"
+                    description="Adds RxJava library and boilerplate code for it">
             </action>
 
             <action id="com.bobrusik.plugin.android_libraries_agent.FirebaseAction"
@@ -87,7 +127,28 @@
                     description="Adds Firebase and boilerplate code for it">
             </action>
 
+            <action id="com.bobrusik.plugin.android_libraries_agent.CrashlyticsAction"
+                    class="actions.CrashlyticsAction" text="Crashlytics"
+                    description="Adds Crashlytics and boilerplate code for it">
+            </action>
+
+            <action id="com.bobrusik.plugin.android_libraries_agent.GlideAction"
+                    class="actions.GlideAction" text="Glide"
+                    description="Adds Glide library and example code for it">
+            </action>
+
+            <separator/>
+
+            <action id="com.bobrusik.plugin.android_libraries_agent.GeneratorIdeaQuickList"
+                    class="actions.QuickListAction" text="Android Libraries Agent List Popup..."
+                    description="List with quick access to other actions">
+                <keyboard-shortcut keymap="Mac OS X" first-keystroke="shift ctrl L"/>
+                <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift ctrl L"/>
+                <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt L"/>
+            </action>
         </group>
+
+
     </actions>
 
     <!-- Extensions -->

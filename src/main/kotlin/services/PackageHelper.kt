@@ -4,17 +4,17 @@ import com.intellij.openapi.module.Module
 import com.intellij.openapi.project.guessProjectDir
 import com.intellij.psi.PsiDirectory
 import constants.CodeGeneratorConstants.JAVA_SOURCE_FOLDER_NAME
+import constants.CodeGeneratorConstants.KOTLIN_SOURCE_FOLDER_NAME
 import constants.CodeGeneratorConstants.MAIN_SOURCE_SET_FOLDER_NAME
 import constants.CodeGeneratorConstants.SRC_FOLDER_NAME
 import execRunWriteAction
 import org.jetbrains.kotlin.idea.core.util.toPsiDirectory
-import utils.extensions.DOT
-import utils.extensions.findSubdirectoryByPackageName
-import utils.extensions.getPackageName
+import utils.extensions.*
 
 class PackageHelper(private val module: Module) {
 
     private val project = module.project
+    private val notificationFactory by lazy { NotificationsFactory.getInstance(project) }
     val rootDir = project.guessProjectDir()?.toPsiDirectory(project)
 
     fun getModulePackage(): PsiDirectory? {
@@ -25,8 +25,17 @@ class PackageHelper(private val module: Module) {
 
     fun getSrcPackage(): PsiDirectory? {
         val moduleDir = getModulePackage()
-        return moduleDir?.findSubdirectory(SRC_FOLDER_NAME)?.findSubdirectory(MAIN_SOURCE_SET_FOLDER_NAME)
-            ?.findSubdirectory(JAVA_SOURCE_FOLDER_NAME)
+        val resDir = moduleDir
+            ?.findSubdirectory(SRC_FOLDER_NAME)
+            ?.findSubdirectory(MAIN_SOURCE_SET_FOLDER_NAME)
+
+        return resDir?.let {
+            if (resDir.hasChildDir(JAVA_SOURCE_FOLDER_NAME)) {
+                resDir.findSubdirectory(JAVA_SOURCE_FOLDER_NAME)
+            } else {
+                resDir.findSubdirectory(KOTLIN_SOURCE_FOLDER_NAME)
+            }
+        }
     }
 
     fun getPackageDir(): PsiDirectory? {
@@ -38,7 +47,17 @@ class PackageHelper(private val module: Module) {
 
     fun generatePackage(dirName: String): PsiDirectory? {
         var dir: PsiDirectory? = null
-        execRunWriteAction { dir = getPackageDir()?.createSubdirectory(dirName) }
+
+        getPackageDir()?.let { parentDir ->
+            execRunWriteAction {
+                dir = if (parentDir.canCreateSubdirectory(dirName)) {
+                    parentDir.createSubdirectory(dirName)
+                } else {
+                    notificationFactory.info("Directory $dirName is already exist.")
+                    parentDir.findSubdirectory(dirName)
+                }
+            }
+        }
         return dir
     }
 }

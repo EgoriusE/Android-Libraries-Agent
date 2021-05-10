@@ -1,12 +1,12 @@
-package core
+package services
 
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.psi.PsiDirectory
-import showChooseSingleFileDialog
 import showMessage
 import utils.extensions.getModulePackage
 import utils.extensions.isJsonFile
+import utils.extensions.showChooseSingleFileDialog
 import java.io.IOException
 
 class FirebaseHelper {

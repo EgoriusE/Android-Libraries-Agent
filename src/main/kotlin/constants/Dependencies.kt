@@ -51,3 +51,39 @@ const val FIREBASE_VERSION_MODULE = "27.1.0"
 const val FIREBASE_D_PROJECT = "com.google.gms:google-services:"
 const val FIREBASE_P_MODULE = "com.google.gms.google-services"
 const val FIREBASE_D_MODULE = "com.google.firebase:firebase-bom:"
+
+// Datastore
+
+const val DATASTORE_VERSION = "1.0.0-beta01"
+const val DATASTORE_D_PROJECT = "androidx.datastore:datastore-preferences:"
+const val DATASTORE_D_RX_JAVA2 = "androidx.datastore:datastore-preferences-rxjava2:"
+const val DATASTORE_D_RX_JAVA3 = "androidx.datastore:datastore-preferences-rxjava3:"
+
+// Crashlytics
+
+const val CRASHLYTICS_VERSION_PROJECT = "2.5.2"
+const val CRASHLYTICS_VERSION_MODULE_1 = "17.4.1"
+const val CRASHLYTICS_VERSION__MODULE_2 = "18.0.3"
+const val CRASHLYTICS_D_PROJECT = "com.google.firebase:firebase-crashlytics-gradle:"
+const val CRASHLYTICS_P_MODULE = "com.google.firebase.crashlytics"
+const val CRASHLYTICS_D_MODULE = "com.google.firebase:firebase-crashlytics:"
+const val CRASHLYTICS_D_MODULE_2 = "com.google.firebase:firebase-analytics:"
+
+// Gson
+
+const val GSON_VERSION = "2.8.6"
+const val GSON_VERSION_2 = "2.9.0"
+const val GSON_D = "com.google.code.gson:gson:"
+const val GSON_D_2 = "com.squareup.retrofit2:converter-gson:"
+
+// Glide
+
+const val GLIDE_VERSION = "4.12.0"
+const val GLIDE_D = "com.github.bumptech.glide:glide:"
+const val GLIDE_D_COMPILER = "com.github.bumptech.glide:compiler:"
+
+// RxJava
+
+const val RXJAVA_VERSION = "3.0.0"
+const val RXJAVA_D_1 = "io.reactivex.rxjava3:rxandroid:"
+const val RXJAVA_D_2 = "io.reactivex.rxjava3:rxjava:"

@@ -28,7 +28,6 @@ class NotificationsFactory(
     private val loggingNotificationGroup = NotificationGroup.balloonGroup(LOGGING_NOTIFICATION_GROUP_ID)
     private val errorsNotificationGroup = NotificationGroup.balloonGroup(ERROR_NOTIFICATION_GROUP_ID)
 
-
     override fun hyperlinkUpdate(notification: Notification, event: HyperlinkEvent) {
         // do nothing by default.
     }
