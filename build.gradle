@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'com.bobrusik.plugin.android_libraries_agent'
-version '1.0.0-alpha3'
+version '1.0.0-alpha4'
 
 repositories {
     mavenCentral()
