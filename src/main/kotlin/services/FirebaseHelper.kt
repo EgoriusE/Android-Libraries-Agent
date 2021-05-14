@@ -3,6 +3,7 @@ package services
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.vfs.VfsUtil
 import com.intellij.psi.PsiDirectory
+import execRunWriteAction
 import showMessage
 import utils.extensions.getModulePackage
 import utils.extensions.isJsonFile
@@ -22,7 +23,7 @@ class FirebaseHelper {
                 if (file.isJsonFile()) {
                     val modulePackage: PsiDirectory? = module.getModulePackage()
                     try {
-                        VfsUtil.copy(null, file, modulePackage!!.virtualFile)
+                        execRunWriteAction { VfsUtil.copy(null, file, modulePackage!!.virtualFile) }
                     } catch (e: IOException) {
                         // nothing
                     }
