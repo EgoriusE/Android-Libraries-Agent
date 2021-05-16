@@ -1,7 +1,7 @@
 package core
 
 import com.android.tools.idea.gradle.dsl.api.GradleBuildModel
-import com.android.tools.idea.gradle.dsl.api.GradleModelSource
+import com.android.tools.idea.gradle.dsl.api.ProjectBuildModel
 import com.android.tools.idea.projectsystem.ProjectSystemSyncManager
 import com.android.tools.idea.projectsystem.gradle.GradleProjectSystemSyncManager
 import com.intellij.openapi.components.Service
@@ -22,7 +22,7 @@ import utils.extensions.canCreateFile
 class ActionHandler(
     private val project: Project
 ) {
-    private val projectGradleBuildModel: GradleBuildModel? = GradleModelSource().getBuildModel(project)
+    private val projectGradleBuildModel: GradleBuildModel? = ProjectBuildModel.get(project).projectBuildModel
     private val gradleDependenciesManager = GradleDependenciesManager()
     private val notificationFactory by lazy { NotificationsFactory.getInstance(project) }
     private val gradleProjectSystemSyncManager = GradleProjectSystemSyncManager(project)
@@ -110,7 +110,7 @@ class ActionHandler(
         step: ModificationStep.GradleModificationStep,
         model: ModificationModel
     ) {
-        val buildModuleModel: GradleBuildModel? = GradleModelSource().getBuildModel(model.module)
+        val buildModuleModel: GradleBuildModel? = ProjectBuildModel.get(project).getModuleBuildModel(model.module)
 
         when (step) {
             is ModificationStep.GradleModificationStep.DependencyModification -> {
