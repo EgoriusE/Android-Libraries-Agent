@@ -8,11 +8,9 @@ import com.intellij.openapi.command.executeCommand
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.psi.PsiBinaryFile
-import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiElement
 import com.intellij.refactoring.copy.CopyHandler
 import org.jetbrains.android.facet.AndroidFacet
-import org.jetbrains.kotlin.idea.core.util.toPsiDirectory
 import org.jetbrains.kotlin.idea.util.application.runWriteAction
 import org.jetbrains.kotlin.idea.util.module
 import utils.extensions.isAndroidProject
@@ -26,12 +24,6 @@ fun AnActionEvent.getSelectedPsiElement(): PsiElement? = getData(PlatformDataKey
 
 val AnActionEvent.androidFacet: AndroidFacet?
     get() = getSelectedPsiElement()?.module?.androidFacet
-
-val Module.moduleParentPsiDirectory: PsiDirectory?
-    get() = moduleFile?.parent?.parent?.toPsiDirectory(project)
-
-val Module.rootPsiDirectory: PsiDirectory?
-    get() = moduleFile?.parent?.toPsiDirectory(project)
 
 fun execRunWriteAction(command: () -> Unit) {
     executeCommand {
