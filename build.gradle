@@ -29,6 +29,6 @@ intellij {
 
 patchPluginXml {
     version = project.version
-    sinceBuild = '194'
+    sinceBuild = '201'
     untilBuild = '203.*'
 }
