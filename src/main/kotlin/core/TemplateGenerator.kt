@@ -1,5 +1,6 @@
 package core
 
+import com.intellij.openapi.components.Service
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
@@ -13,6 +14,7 @@ import org.jetbrains.kotlin.idea.KotlinFileType
 import utils.extensions.templateNameToFileName
 import java.io.StringWriter
 
+@Service
 class TemplateGenerator(
     private val project: Project
 ) {
@@ -40,8 +42,7 @@ class TemplateGenerator(
         }
     }
 
-    fun generateFile(fileModel: FileModel): PsiFile {
-
+    private fun generateFile(fileModel: FileModel): PsiFile {
         val template: Template = try {
             freeMarkerConfig.getTemplate(fileModel.name)
         } catch (e: Exception) {

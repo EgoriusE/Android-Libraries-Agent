@@ -30,9 +30,10 @@ class QuickListAction : QuickSwitchSchemeAction(), DumbAware {
     }
 
     private fun addAction(actionId: String, toGroup: DefaultActionGroup) {
-        ActionManager.getInstance().getAction(actionId)?.let {
-            toGroup.add(it)
-        }
+        ActionManager
+            .getInstance()
+            .getAction(actionId)
+            ?.let { toGroup.add(it) }
     }
 
     override fun update(e: AnActionEvent) {

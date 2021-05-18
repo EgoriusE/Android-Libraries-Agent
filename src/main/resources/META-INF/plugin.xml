@@ -144,7 +144,7 @@
                     description="List with quick access to other actions">
                 <keyboard-shortcut keymap="Mac OS X" first-keystroke="shift ctrl L"/>
                 <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift ctrl L"/>
-                <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt L"/>
+                <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl L"/>
             </action>
         </group>
 
@@ -153,7 +153,10 @@
 
     <!-- Extensions -->
     <extensions defaultExtensionNs="com.intellij">
-        <projectService serviceImplementation="services.NotificationsFactory"/>
+        <projectService serviceImplementation="helpers.NotificationsFactory"/>
         <projectService serviceImplementation="core.ActionHandler"/>
+        <projectService serviceImplementation="core.GeneratorCodeProcessor"/>
+        <projectService serviceImplementation="core.TemplateGenerator"/>
+        <projectService serviceImplementation="core.GradleModificationProcessor"/>
     </extensions>
 </idea-plugin>

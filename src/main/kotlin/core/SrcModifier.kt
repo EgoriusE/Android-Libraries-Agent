@@ -7,6 +7,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiMethod
 import com.intellij.psi.impl.source.tree.PsiWhiteSpaceImpl
 import constants.CodeGeneratorConstants.APPLICATION_CLASS_NAME
+import helpers.PackageHelper
 import model.ModificationModel
 import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.util.application.runWriteAction
@@ -17,10 +18,7 @@ import org.jetbrains.kotlin.resolve.ImportPath
 import org.jetbrains.uast.UClass
 import org.jetbrains.uast.UFile
 import org.jetbrains.uast.toUElement
-import services.PackageHelper
 
-// TODO (a little later): Modifying files
-// I am ashamed of this code
 class SrcModifier(private val project: Project) {
 
     private val psiElementFactory: PsiElementFactory by lazy {

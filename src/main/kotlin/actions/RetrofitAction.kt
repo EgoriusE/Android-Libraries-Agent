@@ -17,7 +17,6 @@ class RetrofitAction : BaseAction() {
         super.actionPerformed(e)
 
         if (project != null && module != null) {
-
             val templateModel = mapOf(PACKAGE_KEY to module!!.getPackageName() + Char.DOT + RETROFIT_F_NAME)
 
             val dataModel = ModificationModel(

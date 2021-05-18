@@ -1,6 +1,5 @@
 package model
 
-
 sealed class ModificationStep {
 
     sealed class GradleModificationStep : ModificationStep() {
@@ -22,7 +21,7 @@ sealed class ModificationStep {
         val dirName: String?
     ) : ModificationStep()
 
-    // TODO (not yet not yet) something meaningful will be here
+    // TODO ()
     class ExistingFiles : ModificationStep()
 
     class NotificationStep(val message: String) : ModificationStep()
