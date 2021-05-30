@@ -17,13 +17,17 @@ import utils.extensions.isAndroidProject
 import utils.extensions.showMessage
 
 fun AnActionEvent.hasAndroidProject(): Boolean {
-    return project?.isAndroidProject() ?: false
+    return project
+        ?.isAndroidProject()
+        ?: false
 }
 
 fun AnActionEvent.getSelectedPsiElement(): PsiElement? = getData(PlatformDataKeys.PSI_ELEMENT)
 
 val AnActionEvent.androidFacet: AndroidFacet?
-    get() = getSelectedPsiElement()?.module?.androidFacet
+    get() = getSelectedPsiElement()
+        ?.module
+        ?.androidFacet
 
 fun execRunWriteAction(command: () -> Unit) {
     executeCommand {
@@ -53,7 +57,6 @@ fun GradleBuildModel.isPluginExist(pluginName: String): Boolean {
     return plugins().any { it.name().toString() == pluginName }
 }
 
-
 fun Module.showMessage(msg: String) {
-    this.project.showMessage(msg)
+    project.showMessage(msg)
 }

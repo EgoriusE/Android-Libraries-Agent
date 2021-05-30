@@ -1,11 +1,10 @@
-package services
+package helpers
 
 import com.intellij.notification.Notification
 import com.intellij.notification.NotificationGroup
 import com.intellij.notification.NotificationListener
 import com.intellij.notification.NotificationType
 import com.intellij.openapi.components.Service
-import com.intellij.openapi.components.service
 import com.intellij.openapi.project.Project
 import constants.PluginConstants.PLUGIN_NAME
 import utils.extensions.replaceLineBreaks
@@ -21,8 +20,6 @@ class NotificationsFactory(
         private const val NOTIFICATIONS_TITLE = PLUGIN_NAME
         private const val LOGGING_NOTIFICATION_GROUP_ID = "$NOTIFICATIONS_TITLE (Logging)"
         private const  val ERROR_NOTIFICATION_GROUP_ID = "$NOTIFICATIONS_TITLE (Errors)"
-
-        fun getInstance(project: Project): NotificationsFactory = project.service()
     }
 
     private val loggingNotificationGroup = NotificationGroup.balloonGroup(LOGGING_NOTIFICATION_GROUP_ID)

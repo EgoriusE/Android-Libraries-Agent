@@ -1,5 +1,6 @@
-package services
+package helpers
 
+import com.intellij.openapi.components.service
 import com.intellij.openapi.module.Module
 import com.intellij.openapi.project.guessProjectDir
 import com.intellij.psi.PsiDirectory
@@ -14,11 +15,12 @@ import utils.extensions.*
 class PackageHelper(private val module: Module) {
 
     private val project = module.project
-    private val notificationFactory by lazy { NotificationsFactory.getInstance(project) }
     val rootDir = project.guessProjectDir()?.toPsiDirectory(project)
 
+    private val notificationFactory = project.service<NotificationsFactory>()
+
     fun getModulePackage(): PsiDirectory? {
-        val fullModuleNameList: List<String> = module.name.split(Char.DOT)
+        val fullModuleNameList = module.name.split(Char.DOT)
         val moduleName = fullModuleNameList[fullModuleNameList.size - 1]
         return rootDir?.findSubdirectory(moduleName)
     }
@@ -42,7 +44,9 @@ class PackageHelper(private val module: Module) {
         val packageName: String? = module.getPackageName()
         return if (packageName != null) {
             getSrcPackage()?.findSubdirectoryByPackageName(packageName)
-        } else null
+        } else {
+            null
+        }
     }
 
     fun generatePackage(dirName: String): PsiDirectory? {

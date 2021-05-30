@@ -35,7 +35,7 @@ fun serialize(data: SomeData) {
 }
 
 fun deserialize(json: String) {
-    val somData: SomeData = gson.fromJson(json, SomeData::class.java)
+    val someData: SomeData = gson.fromJson(json, SomeData::class.java)
 }
 
 /**

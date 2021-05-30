@@ -10,12 +10,12 @@ import org.jetbrains.android.dom.manifest.Manifest
 import org.jetbrains.kotlin.idea.core.util.toPsiDirectory
 
 fun Module.getPackageName(): String? {
-    val manifest: Manifest? = Manifest.getMainManifest(this.androidFacet)
+    val manifest = Manifest.getMainManifest(this.androidFacet)
     return manifest?.`package`?.stringValue
 }
 
 fun Module.getPackageDir(): PsiDirectory? {
-    val packageName: String? = getPackageName()
+    val packageName = getPackageName()
     return if (packageName != null) {
         getSrcPackage()?.findSubdirectoryByPackageName(packageName)
     } else null
@@ -38,7 +38,7 @@ fun Module.getSrcPackage(): PsiDirectory? {
 }
 
 fun Module.getModulePackage(): PsiDirectory? {
-    val fullModuleNameList: List<String> = name.split(Char.DOT)
+    val fullModuleNameList = name.split(Char.DOT)
     val moduleName = fullModuleNameList[fullModuleNameList.size - 1]
     return rootDir?.findSubdirectory(moduleName)
 }

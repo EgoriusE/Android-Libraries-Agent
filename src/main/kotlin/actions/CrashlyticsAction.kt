@@ -32,7 +32,7 @@ class CrashlyticsAction : BaseAction() {
                             ),
                             DependencyModel(
                                 name = CRASHLYTICS_D_MODULE_2,
-                                version = CRASHLYTICS_VERSION__MODULE_2,
+                                version = CRASHLYTICS_VERSION_MODULE_2,
                                 componentName = IMPLEMENTATION_CONFIG_NAME
                             )
                         ),

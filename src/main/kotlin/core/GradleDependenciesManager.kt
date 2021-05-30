@@ -22,16 +22,6 @@ class GradleDependenciesManager {
         buildModel.applyChanges()
     }
 
-
-    private fun isDependencyExist(dependenciesModel: DependenciesModel, dependencyName: String): Boolean {
-        return dependenciesModel
-            .all()
-            .any { dependencyModel ->
-                dependencyModel is ArtifactDependencyModel
-                        && dependencyModel.isEqualName(dependencyName)
-            }
-    }
-
     fun addDependencies(buildModel: BuildScriptModel, dependencies: List<DependencyModel>) = execRunWriteAction {
         dependencies.forEach { dependency ->
             if (!isDependencyExist(buildModel.dependencies(), dependency.name)) {
@@ -50,6 +40,15 @@ class GradleDependenciesManager {
         }
 
         buildModel.applyChanges()
+    }
+
+    private fun isDependencyExist(dependenciesModel: DependenciesModel, dependencyName: String): Boolean {
+        return dependenciesModel
+            .all()
+            .any { dependencyModel ->
+                dependencyModel is ArtifactDependencyModel
+                        && dependencyModel.isEqualName(dependencyName)
+            }
     }
 }
 

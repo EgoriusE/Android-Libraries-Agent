@@ -17,6 +17,7 @@ class RxJavaAction : BaseAction() {
 
         if (project != null && module != null) {
 
+            // TODO: Add template
             val templateModel = mapOf(PACKAGE_KEY to module!!.getPackageName() + Char.DOT + RXJAVA_F_NAME)
 
             val dataModel = ModificationModel(
