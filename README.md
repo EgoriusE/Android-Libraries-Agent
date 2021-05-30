@@ -1,6 +1,8 @@
 # Android Libraries Agent
 ### Adding popular Android libraries in one click
 
+[JetBrains Marketplace](https://plugins.jetbrains.com/plugin/16763-android-libraries-agent)
+
 Plugin for IntelliJ Idea and Android Studio that allows to add popular Android libraries in one click.
 <p>You can add your favorite Android library in one click. The plugin will add dependency and in most cases will add boilerplate or example code.</p>
 <p>Usage:</p>
