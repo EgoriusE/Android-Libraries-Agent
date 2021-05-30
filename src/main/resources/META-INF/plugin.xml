@@ -32,14 +32,14 @@
 <li>More libraries coming soon...</li>
 </ul>
         ]]></description>
-    <version>1.0.0-alpha2</version>
+
+    <!-- Plugin version and supported idea versions patch by patchPluginXml{} in build.gradle -->
 
     <change-notes><![CDATA[
     1.0.0-alpha1 -- First version of plugin. Supports 8 most popular libraries for Android.<br/>
     1.0.0-alpha3 -- Add some new libraries. Added quick access to the list with adding libraries via a shortcut. Shortcut is Shift + Ctrl + L.<br/>
+    1.0.0-beta1 -- Improve templates and code examples, update lib versions, fix small bugs.<br/>
     ]]></change-notes>
-
-    <idea-version since-build="194"/>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>org.intellij.groovy</depends>
