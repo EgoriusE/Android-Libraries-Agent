@@ -16,6 +16,10 @@ const val ROOM_F_NAME = "room"
 const val RETROFIT_T_API = "retrofit_api.kt.ftl"
 const val RETROFIT_F_NAME = "api"
 
+// Koin
+const val KOIN_T = "koin_example.kt.ftl"
+const val KOIN_F_NAME = "di"
+
 // Dagger
 
 const val DAGGER_T_COMPONENT = "dagger_component.kt.ftl"

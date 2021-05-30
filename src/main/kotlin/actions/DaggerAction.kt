@@ -31,10 +31,20 @@ class DaggerAction : BaseAction() {
                                 componentName = IMPLEMENTATION_CONFIG_NAME
                             ),
                             DependencyModel(
+                                name = DAGGER_D_2,
+                                version = DAGGER_VERSION,
+                                componentName = IMPLEMENTATION_CONFIG_NAME
+                            ),
+                            DependencyModel(
                                 name = DAGGER_D_COMPILER,
                                 version = DAGGER_VERSION,
                                 componentName = KAPT_CONFIG_NAME
-                            )
+                            ),
+                            DependencyModel(
+                                name = DAGGER_D_COMPILER_2,
+                                version = DAGGER_VERSION,
+                                componentName = KAPT_CONFIG_NAME
+                            ),
                         )
                     ),
                     ModificationStep.GradleModificationStep.PluginModification(

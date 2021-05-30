@@ -6,6 +6,9 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 
+/**
+* DAO provide methods that your app can use to query, update, insert, and delete data in the database.
+*/
 @Dao
 interface TemplateDao {
     fun getAll(): List<TemplateEntity>?
