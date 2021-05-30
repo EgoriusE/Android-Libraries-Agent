@@ -2,7 +2,7 @@ package constants
 
 // Room
 
-const val ROOM_VERSION = "2.2.6"
+const val ROOM_VERSION = "2.3.0"
 const val ROOM_D_RUNTIME = "androidx.room:room-runtime:"
 const val ROOM_D_KTX = "androidx.room:room-ktx:"
 
@@ -34,9 +34,11 @@ const val TIMBER_D = "com.jakewharton.timber:timber:"
 
 // Dagger
 
-const val DAGGER_VERSION = "2.34.1"
-const val DAGGER_D = "com.google.dagger:dagger:"
-const val DAGGER_D_COMPILER = "com.google.dagger:dagger-compiler:"
+const val DAGGER_VERSION = "2.36"
+const val DAGGER_D = "com.google.dagger:dagger-android:"
+const val DAGGER_D_2 = "com.google.dagger:dagger-android-support:"
+const val DAGGER_D_COMPILER = "com.google.dagger:dagger-android-processor:"
+const val DAGGER_D_COMPILER_2 = "com.google.dagger:dagger-compiler:"
 const val DAGGER_P_KAPT = "kotlin-kapt"
 
 // Okhttp logging interceptor
@@ -46,8 +48,8 @@ const val LOG_INTERCEPTOR_D = "com.squareup.okhttp3:logging-interceptor:"
 
 // Firebase
 
-const val FIREBASE_VERSION_PROJECT = "4.3.5"
-const val FIREBASE_VERSION_MODULE = "27.1.0"
+const val FIREBASE_VERSION_PROJECT = "4.3.8"
+const val FIREBASE_VERSION_MODULE = "28.0.1"
 const val FIREBASE_D_PROJECT = "com.google.gms:google-services:"
 const val FIREBASE_P_MODULE = "com.google.gms.google-services"
 const val FIREBASE_D_MODULE = "com.google.firebase:firebase-bom:"
@@ -61,9 +63,9 @@ const val DATASTORE_D_RX_JAVA3 = "androidx.datastore:datastore-preferences-rxjav
 
 // Crashlytics
 
-const val CRASHLYTICS_VERSION_PROJECT = "2.5.2"
-const val CRASHLYTICS_VERSION_MODULE_1 = "17.4.1"
-const val CRASHLYTICS_VERSION__MODULE_2 = "18.0.3"
+const val CRASHLYTICS_VERSION_PROJECT = "2.6.1"
+const val CRASHLYTICS_VERSION_MODULE_1 = "18.0.0"
+const val CRASHLYTICS_VERSION_MODULE_2 = "19.0.0"
 const val CRASHLYTICS_D_PROJECT = "com.google.firebase:firebase-crashlytics-gradle:"
 const val CRASHLYTICS_P_MODULE = "com.google.firebase.crashlytics"
 const val CRASHLYTICS_D_MODULE = "com.google.firebase:firebase-crashlytics:"
@@ -71,7 +73,7 @@ const val CRASHLYTICS_D_MODULE_2 = "com.google.firebase:firebase-analytics:"
 
 // Gson
 
-const val GSON_VERSION = "2.8.6"
+const val GSON_VERSION = "2.8.7"
 const val GSON_VERSION_2 = "2.9.0"
 const val GSON_D = "com.google.code.gson:gson:"
 const val GSON_D_2 = "com.squareup.retrofit2:converter-gson:"

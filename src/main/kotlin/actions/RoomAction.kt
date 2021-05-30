@@ -36,16 +36,15 @@ class RoomAction : BaseAction() {
                     ),
                     ModificationStep.GenerateCodeStep(
                         files = listOf(
-                            FileModel(ROOM_T_DAO, templateModel),
+                            FileModel(ROOM_T_DAO, templateModel, true),
                             FileModel(ROOM_T_DATABASE, templateModel, true),
-                            FileModel(ROOM_T_ENTITY, templateModel)
+                            FileModel(ROOM_T_ENTITY, templateModel, true)
                         ),
                         dirName = ROOM_F_NAME
                     ),
                     ModificationStep.NotificationStep(
                         message = ROOM_N_MSG
-                    ),
-                    ModificationStep.OpenInEditorFiles()
+                    )
                 ),
                 module = module!!
             )
