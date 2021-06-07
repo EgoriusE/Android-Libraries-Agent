@@ -7,6 +7,7 @@ import com.intellij.openapi.module.Module
 import com.intellij.openapi.project.Project
 import hasAndroidProject
 import utils.extensions.getAppAndroidModuleOrNull
+import utils.extensions.showMessage
 
 abstract class BaseAction : AnAction() {
 
@@ -24,5 +25,9 @@ abstract class BaseAction : AnAction() {
             ?.module
             ?: e.project
                 ?.getAppAndroidModuleOrNull()
+
+        if (module == null) {
+            project?.showMessage("Not found android modules in project!")
+        }
     }
 }
