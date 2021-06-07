@@ -6,6 +6,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.PlatformDataKeys
 import com.intellij.openapi.command.executeCommand
 import com.intellij.openapi.module.Module
+import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.psi.PsiBinaryFile
 import com.intellij.psi.PsiElement
@@ -15,6 +16,7 @@ import org.jetbrains.kotlin.idea.util.application.runWriteAction
 import org.jetbrains.kotlin.idea.util.module
 import utils.extensions.isAndroidProject
 import utils.extensions.showMessage
+import utils.extensions.showYesNoDialog
 
 fun AnActionEvent.hasAndroidProject(): Boolean {
     return project
@@ -59,4 +61,9 @@ fun GradleBuildModel.isPluginExist(pluginName: String): Boolean {
 
 fun Module.showMessage(msg: String) {
     project.showMessage(msg)
+}
+
+@Messages.YesNoResult
+fun Module.showYesNoDialog(msg: String): Int {
+    return project.showYesNoDialog(msg)
 }

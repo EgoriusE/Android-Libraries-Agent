@@ -1,5 +1,6 @@
 package utils.extensions
 
+import com.android.tools.idea.gradle.dsl.api.ProjectBuildModel
 import com.android.tools.idea.util.androidFacet
 import com.intellij.openapi.fileChooser.FileChooserDescriptorFactory
 import com.intellij.openapi.fileChooser.ex.FileChooserDialogImpl
@@ -14,7 +15,15 @@ import org.jetbrains.kotlin.idea.util.projectStructure.allModules
 
 fun Project.getAppAndroidModuleOrNull(): Module? {
     return allModules()
-        .find { it.name == name + Char.DOT + CodeGeneratorConstants.APP_MODULE_NAME }
+        .find {
+            val moduleBuildModel = ProjectBuildModel.get(this).getModuleBuildModel(it)
+            moduleBuildModel
+                ?.plugins()
+                ?.find { pluginModel ->
+                    pluginModel.name().valueAsString() == CodeGeneratorConstants.ANDROID_APPLICATION_PLUGIN
+                } != null
+//            it.name == name + Char.DOT + CodeGeneratorConstants.APP_MODULE_NAME
+        }
 }
 
 fun Project.isAndroidProject(): Boolean {
@@ -33,6 +42,16 @@ fun Project.showChooseSingleFileDialog(title: String? = null): Array<out Virtual
 
 fun Project.showMessage(msg: String) {
     Messages.showMessageDialog(
+        this,
+        msg,
+        PluginConstants.PLUGIN_NAME,
+        Messages.getInformationIcon()
+    )
+}
+
+@Messages.YesNoResult
+fun Project.showYesNoDialog(msg: String): Int {
+    return Messages.showYesNoDialog(
         this,
         msg,
         PluginConstants.PLUGIN_NAME,

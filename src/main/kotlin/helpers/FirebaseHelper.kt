@@ -1,9 +1,10 @@
 package helpers
 
 import com.intellij.openapi.module.Module
+import com.intellij.openapi.ui.Messages
 import com.intellij.openapi.vfs.VfsUtil
 import execRunWriteAction
-import showMessage
+import showYesNoDialog
 import utils.extensions.getModulePackage
 import utils.extensions.isJsonFile
 import utils.extensions.showChooseSingleFileDialog
@@ -25,8 +26,12 @@ object FirebaseHelper {
                     // nothing
                 }
             } else {
-                module.showMessage("It's not a json file!")
+                val dialogResult = module.showYesNoDialog("It's not a json file! Would you like to try again?")
+                if (dialogResult == Messages.YES) execute(module)
             }
+        } else {
+            val dialogResult = module.showYesNoDialog("You have not selected a file. Would you like to try again?")
+            if (dialogResult == Messages.YES) execute(module)
         }
     }
 }

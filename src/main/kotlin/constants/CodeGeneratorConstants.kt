@@ -9,11 +9,10 @@ object CodeGeneratorConstants {
     const val MAIN_SOURCE_SET_FOLDER_NAME = "main"
     const val JAVA_SOURCE_FOLDER_NAME = "java"
     const val KOTLIN_SOURCE_FOLDER_NAME = "kotlin"
-
+    const val ANDROID_APPLICATION_PLUGIN = "com.android.application"
     const val IMPLEMENTATION_CONFIG_NAME = "implementation"
     const val ANNOTATION_PROCESSOR_CONFIG_NAME = "annotationProcessor"
     const val CLASSPATH_CONFIG_NAME = "classpath"
     const val KAPT_CONFIG_NAME = "kapt"
-
     const val APPLICATION_CLASS_NAME = "android.app.Application"
 }
