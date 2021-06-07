@@ -48,3 +48,13 @@ fun Project.showMessage(msg: String) {
         Messages.getInformationIcon()
     )
 }
+
+@Messages.YesNoResult
+fun Project.showYesNoDialog(msg: String): Int {
+    return Messages.showYesNoDialog(
+        this,
+        msg,
+        PluginConstants.PLUGIN_NAME,
+        Messages.getInformationIcon()
+    )
+}
