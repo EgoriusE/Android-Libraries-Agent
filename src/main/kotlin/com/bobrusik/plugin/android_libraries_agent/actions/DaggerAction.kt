@@ -11,6 +11,7 @@ import com.bobrusik.plugin.android_libraries_agent.model.FileModel
 import com.bobrusik.plugin.android_libraries_agent.model.ModificationModel
 import com.bobrusik.plugin.android_libraries_agent.model.ModificationStep
 import com.intellij.openapi.actionSystem.AnActionEvent
+import com.intellij.openapi.components.service
 
 class DaggerAction : BaseAction() {
 
@@ -64,7 +65,7 @@ class DaggerAction : BaseAction() {
                 module = module!!
             )
 
-            ActionHandler.getInstance(project!!).handle(dataModel)
+            project!!.service<ActionHandler>().handle(dataModel)
         }
     }
 }

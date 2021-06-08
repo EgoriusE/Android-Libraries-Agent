@@ -21,10 +21,6 @@ class ActionHandler(
     private val generatorCodeProcessor = project.service<GeneratorCodeProcessor>()
     private val gradleModificationProcessor = project.service<GradleModificationProcessor>()
 
-    companion object {
-        fun getInstance(project: Project): ActionHandler = project.service()
-    }
-
     fun handle(model: ModificationModel) {
         val packageHelper = PackageHelper(model.module)
 
