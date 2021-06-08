@@ -31,7 +31,7 @@ val AnActionEvent.androidFacet: AndroidFacet?
         ?.module
         ?.androidFacet
 
-fun execRunWriteAction(command: () -> Unit) {
+inline fun execRunWriteAction(crossinline command: () -> Unit) {
     executeCommand {
         runWriteAction {
             command()

@@ -31,15 +31,6 @@ fun PsiDirectory.findSubdirectoryByPackageName(packageName: String): PsiDirector
     return result
 }
 
-fun PsiDirectory.createSubdirectoriesForPackageName(packageName: String): PsiDirectory {
-    val directoriesNames = packageName.split(Char.DOT)
-    var result = this
-    for (item in directoriesNames) {
-        result = result.createSubdirectory(item)
-    }
-    return result
-}
-
 fun PsiDirectory.hasChildDir(childDirName: String): Boolean {
     return findSubdirectory(childDirName) != null
 }

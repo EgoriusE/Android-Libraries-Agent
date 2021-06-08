@@ -25,7 +25,7 @@ class PackageHelper(private val module: Module) {
         return rootDir?.findSubdirectory(moduleName)
     }
 
-    fun getSrcPackage(): PsiDirectory? {
+    private fun getSrcPackage(): PsiDirectory? {
         val moduleDir = getModulePackage()
         val resDir = moduleDir
             ?.findSubdirectory(SRC_FOLDER_NAME)
