@@ -23,7 +23,6 @@ class GradleModificationProcessor(
         step: ModificationStep.GradleModificationStep,
         model: ModificationModel
     ) {
-
         ProgressManager
             .getInstance()
             .run(object : Task.Modal(project, "Loading Gradle Model", false) {
@@ -40,7 +39,6 @@ class GradleModificationProcessor(
                     indicator.fraction = 1.0
                 }
             })
-
     }
 
     private fun complete(
