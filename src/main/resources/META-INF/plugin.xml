@@ -59,17 +59,17 @@
             <!--    Network Section    -->
 
             <action id="com.bobrusik.plugin.android_libraries_agent.RetrofitAction"
-                    class="actions.RetrofitAction" text="Retrofit"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.RetrofitAction" text="Retrofit"
                     description="Adds Retrofit library and boilerplate code for it">
             </action>
 
             <action id="com.bobrusik.plugin.android_libraries_agent.HttpLoggingInterceptorAction"
-                    class="actions.HttpLoggingInterceptorAction" text="Okhttp Logging Interceptor"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.HttpLoggingInterceptorAction" text="Okhttp Logging Interceptor"
                     description="Adds Okhttp Logging Interceptor library and boilerplate code for it">
             </action>
 
             <action id="com.bobrusik.plugin.android_libraries_agent.GsonAction"
-                    class="actions.GsonAction" text="Gson"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.GsonAction" text="Gson"
                     description="Adds GsonAction and code examples for it">
             </action>
 
@@ -79,13 +79,13 @@
 
             <action
                     id="com.bobrusik.plugin.android_libraries_agent.RoomAction"
-                    class="actions.RoomAction" text="Room"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.RoomAction" text="Room"
                     description="Adds Room library and boilerplate code for it">
             </action>
 
             <action
                     id="com.bobrusik.plugin.android_libraries_agent.DatastoreAction"
-                    class="actions.DatastoreAction" text="DataStore"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.DatastoreAction" text="DataStore"
                     description="Adds Datastore library and boilerplate code for it">
             </action>
 
@@ -94,17 +94,17 @@
             <!--    DI Section    -->
 
             <action id="com.bobrusik.plugin.android_libraries_agent.KoinAction"
-                    class="actions.KoinAction" text="Koin"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.KoinAction" text="Koin"
                     description="Adds Koin library and boilerplate code for it">
             </action>
 
             <action id="com.bobrusik.plugin.android_libraries_agent.HiltAction"
-                    class="actions.HiltAction" text="Hilt"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.HiltAction" text="Hilt"
                     description="Adds Hilt library and boilerplate code for it">
             </action>
 
             <action id="com.bobrusik.plugin.android_libraries_agent.DaggerAction"
-                    class="actions.DaggerAction" text="Dagger"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.DaggerAction" text="Dagger"
                     description="Adds Dagger library and boilerplate code for it">
             </action>
 
@@ -113,34 +113,34 @@
             <!--    Other Section    -->
 
             <action id="com.bobrusik.plugin.android_libraries_agent.TimberAction"
-                    class="actions.TimberAction" text="Timber"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.TimberAction" text="Timber"
                     description="Adds Timber library and boilerplate code for it">
             </action>
 
             <action id="com.bobrusik.plugin.android_libraries_agent.RxJavaAction"
-                    class="actions.RxJavaAction" text="RxJava"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.RxJavaAction" text="RxJava"
                     description="Adds RxJava library and boilerplate code for it">
             </action>
 
             <action id="com.bobrusik.plugin.android_libraries_agent.FirebaseAction"
-                    class="actions.FirebaseAction" text="Firebase"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.FirebaseAction" text="Firebase"
                     description="Adds Firebase and boilerplate code for it">
             </action>
 
             <action id="com.bobrusik.plugin.android_libraries_agent.CrashlyticsAction"
-                    class="actions.CrashlyticsAction" text="Crashlytics"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.CrashlyticsAction" text="Crashlytics"
                     description="Adds Crashlytics and boilerplate code for it">
             </action>
 
             <action id="com.bobrusik.plugin.android_libraries_agent.GlideAction"
-                    class="actions.GlideAction" text="Glide"
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.GlideAction" text="Glide"
                     description="Adds Glide library and example code for it">
             </action>
 
             <separator/>
 
             <action id="com.bobrusik.plugin.android_libraries_agent.GeneratorIdeaQuickList"
-                    class="actions.QuickListAction" text="Android Libraries Agent List Popup..."
+                    class="com.bobrusik.plugin.android_libraries_agent.actions.QuickListAction" text="Android Libraries Agent List Popup..."
                     description="List with quick access to other actions">
                 <keyboard-shortcut keymap="Mac OS X" first-keystroke="shift ctrl L"/>
                 <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift ctrl L"/>
@@ -153,10 +153,10 @@
 
     <!-- Extensions -->
     <extensions defaultExtensionNs="com.intellij">
-        <projectService serviceImplementation="helpers.NotificationsFactory"/>
-        <projectService serviceImplementation="core.ActionHandler"/>
-        <projectService serviceImplementation="core.GeneratorCodeProcessor"/>
-        <projectService serviceImplementation="core.TemplateGenerator"/>
-        <projectService serviceImplementation="core.GradleModificationProcessor"/>
+        <projectService serviceImplementation="com.bobrusik.plugin.android_libraries_agent.helpers.NotificationsFactory"/>
+        <projectService serviceImplementation="com.bobrusik.plugin.android_libraries_agent.core.ActionHandler"/>
+        <projectService serviceImplementation="com.bobrusik.plugin.android_libraries_agent.core.GeneratorCodeProcessor"/>
+        <projectService serviceImplementation="com.bobrusik.plugin.android_libraries_agent.core.TemplateGenerator"/>
+        <projectService serviceImplementation="com.bobrusik.plugin.android_libraries_agent.core.GradleModificationProcessor"/>
     </extensions>
 </idea-plugin>
